@@ -1,0 +1,11 @@
+name,films,series,hit_rate,median_return,reliable
+Elijah Wood,3,1,1.0,11.73,False
+Ray Romano,3,1,1.0,8.26,False
+Daniel Radcliffe,8,1,0.75,6.17,False
+Mike Myers,4,1,0.75,5.63,False
+Robert Downey Jr.,7,2,0.71,6.08,False
+George Clooney,3,1,0.33,3.66,False
+Matt Damon,3,1,0.33,3.85,False
+Christian Bale,4,2,0.25,3.41,False
+Johnny Depp,5,1,0.2,3.46,False
+Tom Cruise,4,1,0.0,4.46,False

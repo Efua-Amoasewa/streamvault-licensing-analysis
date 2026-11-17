@@ -1,0 +1,6 @@
+name,films,series,hit_rate,median_return,reliable
+Peter Jackson,6,2,0.5,6.73,False
+David Yates,4,1,0.5,5.04,False
+Gore Verbinski,3,1,0.33,4.68,False
+Steven Soderbergh,3,1,0.33,3.66,False
+Christopher Nolan,7,5,0.29,4.45,False

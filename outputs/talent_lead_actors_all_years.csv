@@ -1,0 +1,20 @@
+name,films,series,hit_rate,median_return,reliable
+Tom Hanks,5,2,0.8,6.14,True
+Mark Hamill,3,1,1.0,29.91,False
+Elijah Wood,3,1,1.0,11.73,False
+Michael J. Fox,3,1,1.0,8.32,False
+Ray Romano,3,1,1.0,8.26,False
+Daniel Radcliffe,8,1,0.75,6.17,False
+Robert Downey Jr.,7,2,0.71,6.08,False
+Harrison Ford,5,2,0.6,9.88,False
+Mike Myers,4,1,0.5,5.63,False
+Arnold Schwarzenegger,3,1,0.33,5.08,False
+Al Pacino,3,2,0.33,2.64,False
+Matt Damon,3,1,0.33,3.85,False
+Keanu Reeves,3,1,0.33,4.92,False
+Sigourney Weaver,3,1,0.33,3.2,False
+Christian Bale,4,2,0.25,3.41,False
+Tom Cruise,5,1,0.2,4.55,False
+Johnny Depp,5,1,0.0,3.46,False
+Bruce Willis,4,1,0.0,3.78,False
+George Clooney,3,1,0.0,3.66,False

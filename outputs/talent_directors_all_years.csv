@@ -1,0 +1,14 @@
+name,films,series,hit_rate,median_return,reliable
+Robert Zemeckis,4,2,1.0,10.32,True
+Steven Spielberg,8,4,0.88,13.25,True
+George Lucas,4,1,1.0,8.31,False
+Quentin Tarantino,3,2,0.67,6.03,False
+Francis Ford Coppola,3,1,0.67,7.89,False
+James Cameron,3,2,0.67,9.91,False
+Peter Jackson,6,2,0.5,6.73,False
+David Yates,4,1,0.5,5.04,False
+Lilly Wachowski,3,1,0.33,4.92,False
+Lana Wachowski,3,1,0.33,4.92,False
+Christopher Nolan,7,5,0.14,4.45,False
+Gore Verbinski,3,1,0.0,4.68,False
+Steven Soderbergh,3,1,0.0,3.66,False

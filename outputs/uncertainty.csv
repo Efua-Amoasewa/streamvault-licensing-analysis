@@ -1,0 +1,7 @@
+singles_as,window,franchise_films,standalone_films,franchise_median,standalone_median,gap_low_95,gap_high_95,share_franchise_ahead
+standalone,all years,87,25,5.53,5.0,-6.29,3.08,0.81
+standalone,2000 onward,59,12,5.05,4.49,-0.58,2.43,0.82
+franchise,all years,96,16,5.62,3.84,-6.87,3.45,0.9
+franchise,2000 onward,63,8,5.05,3.84,-0.32,2.56,0.95
+exclude,all years,87,16,5.53,3.84,-6.9,3.39,0.9
+exclude,2000 onward,59,8,5.05,3.84,-0.33,2.63,0.94
