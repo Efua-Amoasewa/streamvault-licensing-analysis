@@ -1,0 +1,85 @@
+movie_id,slice,field,ours,live,difference,match,checked_at
+240,random,title,The Godfather Part II,The Godfather Part II,,True,2026-11-17T11:36:21+00:00
+429,random,title,"The Good, the Bad and the Ugly","The Good, the Bad and the Ugly",,True,2026-11-17T11:36:21+00:00
+10681,random,title,WALL·E,WALL·E,,True,2026-11-17T11:36:21+00:00
+27205,random,title,Inception,Inception,,True,2026-11-17T11:36:21+00:00
+278,extreme return,title,The Shawshank Redemption,The Shawshank Redemption,,True,2026-11-17T11:36:21+00:00
+78,extreme return,title,Blade Runner,Blade Runner,,True,2026-11-17T11:36:21+00:00
+578,extreme return,title,Jaws,Jaws,,True,2026-11-17T11:36:21+00:00
+11,extreme return,title,Star Wars,Star Wars,,True,2026-11-17T11:36:21+00:00
+274,reclassified single,title,The Silence of the Lambs,The Silence of the Lambs,,True,2026-11-17T11:36:21+00:00
+41513,reclassified single,title,The Smurfs,The Smurfs,,True,2026-11-17T11:36:21+00:00
+863,2000 boundary,title,Toy Story 2,Toy Story 2,,True,2026-11-17T11:36:21+00:00
+550,2000 boundary,title,Fight Club,Fight Club,,True,2026-11-17T11:36:21+00:00
+240,random,release_date,1974-12-20,1974-12-20,,True,2026-11-17T11:36:21+00:00
+429,random,release_date,1966-12-23,1966-12-23,,True,2026-11-17T11:36:21+00:00
+10681,random,release_date,2008-06-26,2008-06-26,,True,2026-11-17T11:36:21+00:00
+27205,random,release_date,2010-07-15,2010-07-15,,True,2026-11-17T11:36:21+00:00
+278,extreme return,release_date,1994-09-23,1994-09-23,,True,2026-11-17T11:36:21+00:00
+78,extreme return,release_date,1982-06-25,1982-06-25,,True,2026-11-17T11:36:21+00:00
+578,extreme return,release_date,1975-06-20,1975-06-20,,True,2026-11-17T11:36:21+00:00
+11,extreme return,release_date,1977-05-25,1977-05-25,,True,2026-11-17T11:36:21+00:00
+274,reclassified single,release_date,1991-02-14,1991-02-14,,True,2026-11-17T11:36:21+00:00
+41513,reclassified single,release_date,2011-07-29,2011-07-29,,True,2026-11-17T11:36:21+00:00
+863,2000 boundary,release_date,1999-10-30,1999-10-30,,True,2026-11-17T11:36:21+00:00
+550,2000 boundary,release_date,1999-10-15,1999-10-15,,True,2026-11-17T11:36:21+00:00
+240,random,collection_name,The Godfather Collection,The Godfather Collection,,True,2026-11-17T11:36:21+00:00
+429,random,collection_name,(none),(none),,True,2026-11-17T11:36:21+00:00
+10681,random,collection_name,(none),(none),,True,2026-11-17T11:36:21+00:00
+27205,random,collection_name,(none),(none),,True,2026-11-17T11:36:21+00:00
+278,extreme return,collection_name,(none),(none),,True,2026-11-17T11:36:21+00:00
+78,extreme return,collection_name,Blade Runner Collection,Blade Runner Collection,,True,2026-11-17T11:36:21+00:00
+578,extreme return,collection_name,Jaws Collection,Jaws Collection,,True,2026-11-17T11:36:21+00:00
+11,extreme return,collection_name,Star Wars Collection,Star Wars Collection,,True,2026-11-17T11:36:21+00:00
+274,reclassified single,collection_name,The Hannibal Lecter Collection,The Hannibal Lecter Collection,,True,2026-11-17T11:36:21+00:00
+41513,reclassified single,collection_name,The Smurfs (Theatrical) Collection,The Smurfs (Theatrical) Collection,,True,2026-11-17T11:36:21+00:00
+863,2000 boundary,collection_name,Toy Story Collection,Toy Story Collection,,True,2026-11-17T11:36:21+00:00
+550,2000 boundary,collection_name,(none),(none),,True,2026-11-17T11:36:21+00:00
+240,random,directors,Francis Ford Coppola,Francis Ford Coppola,,True,2026-11-17T11:36:21+00:00
+429,random,directors,Sergio Leone,Sergio Leone,,True,2026-11-17T11:36:21+00:00
+10681,random,directors,Andrew Stanton,Andrew Stanton,,True,2026-11-17T11:36:21+00:00
+27205,random,directors,Christopher Nolan,Christopher Nolan,,True,2026-11-17T11:36:21+00:00
+278,extreme return,directors,Frank Darabont,Frank Darabont,,True,2026-11-17T11:36:21+00:00
+78,extreme return,directors,Ridley Scott,Ridley Scott,,True,2026-11-17T11:36:21+00:00
+578,extreme return,directors,Steven Spielberg,Steven Spielberg,,True,2026-11-17T11:36:21+00:00
+11,extreme return,directors,George Lucas,George Lucas,,True,2026-11-17T11:36:21+00:00
+274,reclassified single,directors,Jonathan Demme,Jonathan Demme,,True,2026-11-17T11:36:21+00:00
+41513,reclassified single,directors,Raja Gosnell,Raja Gosnell,,True,2026-11-17T11:36:21+00:00
+863,2000 boundary,directors,John Lasseter,John Lasseter,,True,2026-11-17T11:36:21+00:00
+550,2000 boundary,directors,David Fincher,David Fincher,,True,2026-11-17T11:36:21+00:00
+240,random,budget,13000000,13000000,0.0,True,2026-11-17T11:36:21+00:00
+429,random,budget,1200000,1200000,0.0,True,2026-11-17T11:36:21+00:00
+10681,random,budget,180000000,180000000,0.0,True,2026-11-17T11:36:21+00:00
+27205,random,budget,160000000,160000000,0.0,True,2026-11-17T11:36:21+00:00
+278,extreme return,budget,25000000,25000000,0.0,True,2026-11-17T11:36:21+00:00
+78,extreme return,budget,28000000,28000000,0.0,True,2026-11-17T11:36:21+00:00
+578,extreme return,budget,7000000,7000000,0.0,True,2026-11-17T11:36:21+00:00
+11,extreme return,budget,11000000,11000000,0.0,True,2026-11-17T11:36:21+00:00
+274,reclassified single,budget,19000000,19000000,0.0,True,2026-11-17T11:36:21+00:00
+41513,reclassified single,budget,110000000,110000000,0.0,True,2026-11-17T11:36:21+00:00
+863,2000 boundary,budget,90000000,90000000,0.0,True,2026-11-17T11:36:21+00:00
+550,2000 boundary,budget,63000000,63000000,0.0,True,2026-11-17T11:36:21+00:00
+240,random,revenue,102600000,102600000,0.0,True,2026-11-17T11:36:21+00:00
+429,random,revenue,38900000,38900000,0.0,True,2026-11-17T11:36:21+00:00
+10681,random,revenue,521311860,521311860,0.0,True,2026-11-17T11:36:21+00:00
+27205,random,revenue,839030630,839030630,0.0,True,2026-11-17T11:36:21+00:00
+278,extreme return,revenue,28341469,28341469,0.0,True,2026-11-17T11:36:21+00:00
+78,extreme return,revenue,41722424,41722424,0.0,True,2026-11-17T11:36:21+00:00
+578,extreme return,revenue,470653000,470653000,0.0,True,2026-11-17T11:36:21+00:00
+11,extreme return,revenue,775398007,775398007,0.0,True,2026-11-17T11:36:21+00:00
+274,reclassified single,revenue,272742922,272742922,0.0,True,2026-11-17T11:36:21+00:00
+41513,reclassified single,revenue,563749323,563749323,0.0,True,2026-11-17T11:36:21+00:00
+863,2000 boundary,revenue,497375404,497375404,0.0,True,2026-11-17T11:36:21+00:00
+550,2000 boundary,revenue,100853753,100853753,0.0,True,2026-11-17T11:36:21+00:00
+240,random,return_multiple,7.892307692307693,7.892307692307693,0.0,True,2026-11-17T11:36:21+00:00
+429,random,return_multiple,32.416666666666664,32.416666666666664,0.0,True,2026-11-17T11:36:21+00:00
+10681,random,return_multiple,2.896177,2.896177,0.0,True,2026-11-17T11:36:21+00:00
+27205,random,return_multiple,5.2439414375,5.2439414375,0.0,True,2026-11-17T11:36:21+00:00
+278,extreme return,return_multiple,1.13365876,1.13365876,0.0,True,2026-11-17T11:36:21+00:00
+78,extreme return,return_multiple,1.4900865714285714,1.4900865714285714,0.0,True,2026-11-17T11:36:21+00:00
+578,extreme return,return_multiple,67.23614285714285,67.23614285714285,0.0,True,2026-11-17T11:36:21+00:00
+11,extreme return,return_multiple,70.49072790909091,70.49072790909091,0.0,True,2026-11-17T11:36:21+00:00
+274,reclassified single,return_multiple,14.354890631578947,14.354890631578947,0.0,True,2026-11-17T11:36:21+00:00
+41513,reclassified single,return_multiple,5.124993845454545,5.124993845454545,0.0,True,2026-11-17T11:36:21+00:00
+863,2000 boundary,return_multiple,5.526393377777778,5.526393377777778,0.0,True,2026-11-17T11:36:21+00:00
+550,2000 boundary,return_multiple,1.6008532222222223,1.6008532222222223,0.0,True,2026-11-17T11:36:21+00:00

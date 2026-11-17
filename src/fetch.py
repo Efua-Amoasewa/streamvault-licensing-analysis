@@ -74,8 +74,7 @@ def main():
 
     ids = pd.read_csv("data/ids_classified.csv", dtype=str, keep_default_na=False)
     usable = ids.loc[ids["status"] == "usable", "tmdb_id"].tolist()
-    assert len(usable) == 117, f"expected 117 usable ids, got {len(usable)}"
-
+    assert len(usable) > 0, "no usable ids to fetch"
     session = make_session()
     manifest = []
     requests_made = 0

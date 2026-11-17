@@ -7,16 +7,24 @@ from analysis import POLICIES, classify, load_films
 
 OUT_DIR = Path("outputs")
 N_RESAMPLES = 10_000
+BATCH = 1_000             # resamples drawn at a time, so memory stays small however many films
 SEED = 42                 # fixed, so the answer is the same every run
 
 
+def bootstrap_medians(values, rng):
+    """Median of many resamples (with replacement), drawn in batches to limit memory."""
+    pieces = []
+    for _ in range(N_RESAMPLES // BATCH):
+        picks = rng.integers(0, len(values), (BATCH, len(values)))
+        pieces.append(np.median(values[picks], axis=1))
+    return np.concatenate(pieces)
+
+
 def bootstrap_gap(franchise, standalone, rng):
-    """How big is the median gap, and could it be luck? Resample both groups with replacement."""
+    """How big is the median gap, and could it be luck?"""
     f = franchise.to_numpy()
     s = standalone.to_numpy()
-    f_medians = np.median(f[rng.integers(0, len(f), (N_RESAMPLES, len(f)))], axis=1)
-    s_medians = np.median(s[rng.integers(0, len(s), (N_RESAMPLES, len(s)))], axis=1)
-    gap = f_medians - s_medians
+    gap = bootstrap_medians(f, rng) - bootstrap_medians(s, rng)
     return {
         "franchise_films": len(f),
         "standalone_films": len(s),

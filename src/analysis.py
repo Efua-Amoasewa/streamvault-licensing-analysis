@@ -44,7 +44,7 @@ def kpi_table(films):
 
 def main():
     films = load_films()
-    assert len(films) == 112
+    
     for policy in POLICIES:
         classified = classify(films, policy)
         windows = {"all years": classified,

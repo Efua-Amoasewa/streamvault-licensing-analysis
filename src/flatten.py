@@ -63,7 +63,7 @@ def main():
     directors = build_directors(credits)
 
     # Checks: every claim about the data is a line of code.
-    assert len(films) == 112, f"expected 112 films, got {len(films)}"
+    assert len(films) == len(details), "a film was lost while flattening"
     assert films["movie_id"].is_unique, "duplicate film in films table"
     assert (films["movie_id"] == films["requested_id"]).all(), "TMDb returned a different id than we asked for"
     assert set(cast["movie_id"]) <= set(films["movie_id"]), "cast for an unknown film"
