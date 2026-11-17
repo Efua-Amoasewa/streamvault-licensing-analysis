@@ -22,8 +22,8 @@ def bootstrap_medians(values, rng):
 
 def bootstrap_gap(franchise, standalone, rng):
     """How big is the median gap, and could it be luck?"""
-    f = franchise.to_numpy()
-    s = standalone.to_numpy()
+    f = franchise.dropna().to_numpy()       # films with no usable return figure are left out
+    s = standalone.dropna().to_numpy()
     gap = bootstrap_medians(f, rng) - bootstrap_medians(s, rng)
     return {
         "franchise_films": len(f),

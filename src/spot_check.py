@@ -20,7 +20,7 @@ def pick_sample(films):
     """About a dozen films, in four deliberate slices, so the check cannot be accused of being chosen to pass."""
     classified = classify(films, "standalone")
     random_slice = films.sample(4, random_state=SEED)
-    by_return = films.sort_values("return_multiple")
+    by_return = films.dropna(subset=["return_multiple"]).sort_values("return_multiple")
     extremes = pd.concat([by_return.head(2), by_return.tail(2)])
     singles = classified.loc[classified["collection_films_in_list"] == 1].head(2)   # reclassified by ADR-001
     days_from_cutoff = (pd.to_datetime(films["release_date"]) - pd.Timestamp("2000-01-01")).abs()
@@ -66,7 +66,7 @@ def live_values(session, api_key, movie_ids):
             "directors": "; ".join(names),
             "budget": details["budget"],
             "revenue": details["revenue"],
-            "return_multiple": details["revenue"] / details["budget"],
+            "return_multiple": details["revenue"] / details["budget"] if details["budget"] else float("nan"),
         })
     return pd.DataFrame(rows).set_index("movie_id")
 
@@ -78,7 +78,7 @@ def compare(ours, live):
         mine, theirs = ours[field], live.loc[ours.index, field]
         if field in MONEY_FIELDS:
             difference = (theirs - mine).astype(float)
-            matches = difference.abs() <= MONEY_TOLERANCE * mine.abs()
+            matches = (difference.abs() <= MONEY_TOLERANCE * mine.abs()) | (mine.isna() & theirs.isna())
         else:
             difference = pd.Series(np.nan, index=ours.index)
             matches = mine == theirs

@@ -18,6 +18,7 @@ def talent_table(films, people):
     joined = people.merge(films[["movie_id", "return_multiple", "series"]],
                           on="movie_id", how="inner", validate="many_to_one")
     assert len(joined) == len(people), "a person-film row lost its film"
+    joined = joined.dropna(subset=["return_multiple"])
     joined = joined.assign(hit=joined["return_multiple"] > baseline)
     table = joined.groupby(["person_id", "name"]).agg(
         films=("movie_id", "nunique"),

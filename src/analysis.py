@@ -11,8 +11,7 @@ def load_films():
     )
     return films.assign(
         release_year=pd.to_datetime(films["release_date"]).dt.year,
-        return_multiple=films["revenue"] / films["budget"],
-        revenue_m=films["revenue"] / 1_000_000,
+        return_multiple=(films["revenue"] / films["budget"]).where((films["budget"] > 0) & (films["revenue"] > 0)),        revenue_m=films["revenue"] / 1_000_000,
         collection_films_in_list=films.groupby("collection_name")["movie_id"].transform("size"),
     )
 

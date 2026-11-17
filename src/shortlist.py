@@ -17,7 +17,7 @@ def add_score(table, columns):
 
 def bundle_table(films, min_films=MIN_BUNDLE_FILMS):
     """One row per franchise bundle (collection)."""
-    bundles = films.loc[films["group"] == "franchise"].assign(budget_m=lambda d: d["budget"] / 1_000_000)
+    bundles = films.loc[(films["group"] == "franchise") & films["return_multiple"].notna()].assign(budget_m=lambda d: d["budget"] / 1_000_000)
     bundles = bundles.sort_values("return_multiple")           # so 'first' below = weakest film
     table = bundles.groupby("collection_name").agg(
         films=("movie_id", "nunique"),
@@ -38,7 +38,7 @@ def bundle_table(films, min_films=MIN_BUNDLE_FILMS):
 
 def standalone_table(films):
     """One row per standalone film, scored on return, revenue and rating."""
-    alone = films.loc[films["group"] == "standalone"].assign(budget_m=lambda d: d["budget"] / 1_000_000)
+    alone = films.loc[(films["group"] == "standalone") & films["return_multiple"].notna()].assign(budget_m=lambda d: d["budget"] / 1_000_000)
     table = alone[["movie_id", "title", "release_year", "budget_m", "revenue_m",
                    "return_multiple", "vote_average"]]
     table = add_score(table, ["return_multiple", "revenue_m", "vote_average"])
@@ -65,8 +65,6 @@ def entry_position(films):
 
 
 def main():
-    pd.set_option("display.width", 250)
-    pd.set_option("display.max_columns", None)
     OUT_DIR.mkdir(exist_ok=True)
     films = classify(load_films(), "standalone")          # decision: ADR-001
     modern = films.loc[films["release_year"] >= 2000]     # decision: ADR-002
@@ -84,7 +82,7 @@ def main():
     print("\n=== standalone films, all years (top 8, for comparison) ===")
     print(standalone_table(films).head(8))
 
-    print("\n=== are the middle films of a bundle weaker? (all years, then 2000 onward) ===")
+    print("\n=== are the middle films of a bundle weaker? (all years | 2000 onward) ===")
     print(entry_position(films))
     print(entry_position(modern))
 
