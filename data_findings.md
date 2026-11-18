@@ -60,7 +60,7 @@ To value franchises as they are sold (all films or none), the run also fetches e
 
 ### F-05: The id list had defects that standard tools hide — Severity: Medium
 
-- **What it is:** One blank line, one "N/A", one "-1", one id in another database's format, six repeated ids and five ids the database does not know.
+- **What it is:** Three invalid lines (one blank, one "N/A", one "-1"), seven repeats (six ids listed twice, plus one id in another database's format that turned out to be The Dark Knight, already on the list) and five ids the database does not know: 3 + 7 + 5 = 15.
 - **How I detected it:** The usual file reader reports 126 rows, not 127, because it silently skips blank lines and turns "N/A" into a missing value. Reading every line as text and counting by category caught it, and the counts add up to 127. The other-database id was looked up live through the database's own matching service rather than dropped.
 - **Scale:** 15 of 127 lines (12%).
 - **Effect on the client's number:** Without removing repeats, seven extra rows (including The Dark Knight three times, Fight Club, Pulp Fiction and The Empire Strikes Back) would be counted and bundles would be inflated. Nothing real is lost: the other-database id was a third copy of The Dark Knight.
@@ -93,7 +93,7 @@ To value franchises as they are sold (all films or none), the run also fetches e
 | Star Wars returns 70.5x | Looks like a data entry error | Budget $11M, revenue $775M, both confirmed in the live re-check. It is real, just from 1977; it is why I use the middle film, not the average. |
 | The Shawshank Redemption returns only 1.13x, Blade Runner 1.49x | Looks like missing revenue | Both are known for modest box-office; both agree with the live database. |
 | Two non-English films (Spirited Away, The Good, the Bad and the Ugly) | Might be dubbed or duplicate records | They are the original-language records, each present once. |
-| Six repeated ids | Looks like 6 films counted twice | Removed before fetching; the final film table has no repeats (checked in code). |
+| Seven repeated lines | Looks like 7 films counted twice | Six are the same id listed again and one is The Dark Knight under another database's id; all removed before analysis, and the final film table has no repeats (checked in code). |
 | No film returns less than 1.0x | Looks like a filter removed losers | No filter was applied; it is a feature of the list (F-01). |
 | 126 rows instead of 127 | The number the usual reader reports | The reader skips a blank line; 127 is correct (F-05). |
 
