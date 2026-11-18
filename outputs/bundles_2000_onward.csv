@@ -1,13 +1,12 @@
-collection_name,films,first_year,last_year,total_revenue_m,total_budget_m,median_film_return,weakest_film_return,weakest_film,median_rating,bundle_return,score
-The Lord of the Rings Collection,3,2001,2003,2916.54,266.0,11.73,9.37,The Lord of the Rings: The Fellowship of the Ring,8.45,10.96,1.0
-The Avengers Collection,4,2012,2019,7919.28,1111.0,6.87,5.98,Avengers: Age of Ultron,8.17,7.13,0.86
-Harry Potter Collection,8,2001,2011,7759.78,1280.0,6.17,3.74,Harry Potter and the Half-Blood Prince,7.77,6.06,0.69
-Ice Age Collection,3,2002,2009,1930.94,229.0,8.26,6.5,Ice Age,6.78,8.43,0.67
-The Bourne Collection,3,2002,2007,945.36,205.0,3.85,3.57,The Bourne Identity,7.45,4.61,0.58
-Shrek Collection,4,2001,2010,2983.13,535.0,5.63,4.56,Shrek Forever After,6.87,5.58,0.56
-The Hobbit Collection,3,2012,2014,2935.52,750.0,3.83,3.82,The Hobbit: The Battle of the Five Armies,7.39,3.91,0.47
-The Dark Knight Collection,3,2005,2012,2463.74,585.0,4.32,2.49,Batman Begins,7.8,4.21,0.44
-Iron Man Collection,3,2008,2013,2424.68,540.0,4.18,3.12,Iron Man 2,6.93,4.49,0.39
-Mission: Impossible Collection,4,2000,2015,2322.3,570.0,4.46,2.66,Mission: Impossible III,6.94,4.07,0.31
-Pirates of the Caribbean Collection,5,2003,2017,4525.53,1249.0,3.46,2.76,Pirates of the Caribbean: On Stranger Tides,7.28,3.62,0.28
-Ocean's Collection,3,2001,2007,1124.77,280.0,3.66,3.3,Ocean's Twelve,6.74,4.02,0.25
+collection_name,films_released,films_on_list,films_with_money,first_year,last_year,whole_budget_m,whole_revenue_m,whole_median_film_return,whole_weakest_film_return,median_rating,not_on_list,whole_bundle_return,complete,score
+The Lord of the Rings Collection,3,3,3,2001,2003,266.0,2916.54,11.73,9.37,8.45,,10.96,True,1.0
+The Avengers Collection,4,4,4,2012,2019,1111.0,7919.28,6.87,5.98,8.17,,7.13,True,0.88
+Harry Potter Collection,8,8,8,2001,2011,1280.0,7759.78,6.17,3.74,7.77,,6.06,True,0.67
+Shrek Collection,4,4,4,2001,2010,535.0,2983.13,5.63,4.56,6.87,,5.58,True,0.58
+Ice Age Collection,6,3,5,2002,2022,429.0,3216.77,8.26,3.89,6.63,Ice Age: Continental Drift; Ice Age: Collision Course; The Ice Age Adventures of Buck Wild,7.5,False,0.58
+The Hobbit Collection,3,3,3,2012,2014,750.0,2935.52,3.83,3.82,7.39,,3.91,True,0.52
+The Dark Knight Collection,3,3,3,2005,2012,585.0,2463.74,4.32,2.49,7.8,,4.21,True,0.48
+Iron Man Collection,3,3,3,2008,2013,540.0,2424.68,4.18,3.12,6.93,,4.49,True,0.42
+Ocean's Collection,3,3,3,2001,2007,280.0,1124.77,3.66,3.3,6.74,,4.02,True,0.33
+Pirates of the Caribbean Collection,5,5,5,2003,2017,1249.0,4525.53,3.46,2.76,7.28,,3.62,True,0.3
+The Bourne Collection,5,3,5,2002,2016,455.0,1637.44,3.57,2.13,7.34,The Bourne Legacy; Jason Bourne,3.6,False,0.24

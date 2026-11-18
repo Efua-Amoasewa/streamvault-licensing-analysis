@@ -1,7 +1,15 @@
-singles_as,window,franchise_films,standalone_films,franchise_median,standalone_median,gap_low_95,gap_high_95,share_franchise_ahead
-standalone,all years,87,25,5.53,5.0,-6.29,3.08,0.81
-standalone,2000 onward,59,12,5.05,4.49,-0.58,2.43,0.82
-franchise,all years,96,16,5.62,3.84,-6.87,3.45,0.9
-franchise,2000 onward,63,8,5.05,3.84,-0.32,2.56,0.95
-exclude,all years,87,16,5.53,3.84,-6.9,3.39,0.9
-exclude,2000 onward,59,8,5.05,3.84,-0.33,2.63,0.94
+singles_as,window,unit,resampling,franchise_units,standalone_films,franchise_median,standalone_median,gap_low_95,gap_high_95,share_franchise_ahead
+standalone,all years,film,each film independent,87,25,5.53,5.0,-6.34,3.08,0.81
+standalone,all years,film,whole bundles,87,25,5.53,5.0,-6.24,3.16,0.78
+standalone,2000 onward,film,each film independent,59,12,5.05,4.49,-0.63,2.43,0.83
+standalone,2000 onward,film,whole bundles,59,12,5.05,4.49,-0.68,2.73,0.8
+franchise,all years,film,each film independent,96,16,5.62,3.84,-6.94,3.44,0.9
+franchise,all years,film,whole bundles,96,16,5.62,3.84,-6.86,3.61,0.9
+franchise,2000 onward,film,each film independent,63,8,5.05,3.84,-0.32,2.56,0.94
+franchise,2000 onward,film,whole bundles,63,8,5.05,3.84,-0.44,2.91,0.93
+exclude,all years,film,each film independent,87,16,5.53,3.84,-6.79,3.39,0.91
+exclude,all years,film,whole bundles,87,16,5.53,3.84,-6.34,3.53,0.9
+exclude,2000 onward,film,each film independent,59,8,5.05,3.84,-0.33,2.63,0.93
+exclude,2000 onward,film,whole bundles,59,8,5.05,3.84,-0.51,2.98,0.91
+standalone,all years,whole bundle,each bundle independent,23,25,4.49,5.0,-6.77,2.38,0.4
+standalone,2000 onward,whole bundle,each bundle independent,12,12,5.02,4.49,-0.95,2.83,0.74

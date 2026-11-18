@@ -1,0 +1,4 @@
+rule,bundles,standalones
+chosen: average of percentile ranks,The Lord of the Rings Collection; The Avengers Collection; Harry Potter Collection,"Inception; Interstellar; Spirited Away; The Incredibles; Monsters, Inc."
+rejected A: return only,The Lord of the Rings Collection; Ice Age Collection; The Avengers Collection,"Spirited Away; The Incredibles; Inception; The Smurfs; Monsters, Inc."
+"rejected B: 50% return, 25% each other",The Lord of the Rings Collection; The Avengers Collection; Harry Potter Collection,"Inception; Spirited Away; Interstellar; The Incredibles; Monsters, Inc."

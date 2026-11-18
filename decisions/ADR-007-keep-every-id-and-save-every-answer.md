@@ -6,11 +6,11 @@
 
 ## Context
 
-The list has defects (F-03) and a database that is polite-use only. We need both a full account of the 127 lines and a way to repeat the analysis without calling the database again.
+The list has defects (F-05) and a database that is polite-use only. We need both a full account of the 127 lines and a way to repeat the analysis without calling the database again.
 
 ## Decision
 
-Read every line as text and give it one status: usable, repeat, blank, other-database id or invalid. Request each usable id once, wait a tenth of a second between requests, retry only temporary errors, never retry "not found", and save each raw answer to disk with the time it was fetched.
+Read every line as text and give it one status: usable, repeat, blank, unmatched other-database id or invalid. An id from another film database ("tt...") is looked up through the database's own matching service and replaced by the id it matches; if that film is already on the list it is a repeat (this is what happened: it is The Dark Knight). Ids written "0155" or "155.0" count as "155". The first copy of a repeated id is kept; which copy does not matter, because every answer for the same id is identical. Request each usable id once, wait a tenth of a second between requests, retry only temporary errors, never retry "not found", and save each raw answer to disk with the time it was fetched.
 
 ## Alternatives considered
 
@@ -28,7 +28,7 @@ Read every line as text and give it one status: usable, repeat, blank, other-dat
 
 ## Consequences
 
-- **What this buys:** A full reconciliation, a first run of 234 requests and a second run of 0, and an offline option.
+- **What this buys:** A full reconciliation, a first run of 234 film requests (plus 1 id lookup and 71 whole-franchise requests) and a second run of 0, and an offline option.
 - **What this costs:** The saved data goes out of date; each film carries its fetch date.
 - **What it costs the client if I am wrong:** Amounts edited in the database after 17 November are not reflected.
 - **What would make me revisit this:** A need for fresher figures, in which case delete the saved folder and fetch again.

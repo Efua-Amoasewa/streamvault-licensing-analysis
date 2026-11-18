@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 POLICIES = ["standalone", "franchise", "exclude"]   # what to call collections alone in our list
+CUTOFF_YEAR = 2000        # the one place the time-window split is set (ADR-002)
 
 
 def load_films():
@@ -11,7 +12,8 @@ def load_films():
     )
     return films.assign(
         release_year=pd.to_datetime(films["release_date"]).dt.year,
-        return_multiple=(films["revenue"] / films["budget"]).where((films["budget"] > 0) & (films["revenue"] > 0)),        revenue_m=films["revenue"] / 1_000_000,
+        return_multiple=(films["revenue"] / films["budget"]).where((films["budget"] > 0) & (films["revenue"] > 0)),
+        revenue_m=films["revenue"] / 1_000_000,
         collection_films_in_list=films.groupby("collection_name")["movie_id"].transform("size"),
     )
 
@@ -25,7 +27,7 @@ def classify(films, singles_as):
         ["franchise", {"standalone": "standalone", "franchise": "franchise", "exclude": "excluded"}[singles_as]],
         default="standalone",
     )
-    return films.assign(group=group, is_pre2000=films["release_year"] < 2000)
+    return films.assign(group=group, is_pre2000=films["release_year"] < CUTOFF_YEAR)
 
 
 def kpi_table(films):
@@ -47,7 +49,7 @@ def main():
     for policy in POLICIES:
         classified = classify(films, policy)
         windows = {"all years": classified,
-                   "2000 onward": classified.loc[classified["release_year"] >= 2000]}
+                   "2000 onward": classified.loc[classified["release_year"] >= CUTOFF_YEAR]}
         for window_name, window in windows.items():
             print(f"\n--- singles as {policy!r} | {window_name} ---")
             print(kpi_table(window))

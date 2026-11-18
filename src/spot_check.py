@@ -42,7 +42,7 @@ def our_values(sample, directors):
 
 
 def fetch_live(session, api_key, movie_id, endpoint):
-    url = BASE_URL + ENDPOINTS[endpoint].format(id=movie_id)
+    url = BASE_URL + ENDPOINTS[endpoint][0].format(id=movie_id)
     response = session.get(url, params={"api_key": api_key}, timeout=TIMEOUT)
     if response.status_code == 404:
         return None

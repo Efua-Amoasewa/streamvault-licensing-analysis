@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from analysis import classify, load_films
+from analysis import CUTOFF_YEAR, classify, load_films
 
 OUT_DIR = Path("outputs")
 MIN_TALENT_FILMS = 3      # a person needs at least this many films to be judged
@@ -39,7 +39,7 @@ def main():
     OUT_DIR.mkdir(exist_ok=True)
 
     films = classify(load_films(), "standalone")
-    windows = {"all_years": films, "2000_onward": films.loc[films["release_year"] >= 2000]}
+    windows = {"all_years": films, "2000_onward": films.loc[films["release_year"] >= CUTOFF_YEAR]}
 
     directors = pd.read_csv("data/processed/directors.csv")
     cast = pd.read_csv("data/processed/cast.csv")

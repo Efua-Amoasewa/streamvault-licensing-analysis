@@ -1,23 +1,23 @@
-collection_name,films,first_year,last_year,total_revenue_m,total_budget_m,median_film_return,weakest_film_return,weakest_film,median_rating,bundle_return,score
-The Lord of the Rings Collection,3,2001,2003,2916.54,266.0,11.73,9.37,The Lord of the Rings: The Fellowship of the Ring,8.45,10.96,0.98
-Back to the Future Collection,3,1985,1990,969.49,99.0,8.32,6.13,Back to the Future Part III,7.8,9.79,0.88
-The Avengers Collection,4,2012,2019,7919.28,1111.0,6.87,5.98,Avengers: Age of Ultron,8.17,7.13,0.85
-Star Wars Collection,6,1977,2005,4432.41,409.35,13.4,5.41,Star Wars: Episode II - Attack of the Clones,7.69,10.83,0.82
-Toy Story Collection,4,1995,2019,3039.69,495.0,5.83,5.34,Toy Story 3,7.72,6.14,0.71
-Indiana Jones Collection,4,1981,2008,1983.84,279.0,10.89,4.25,Indiana Jones and the Kingdom of the Crystal Skull,7.6,7.11,0.68
-Harry Potter Collection,8,2001,2011,7759.78,1280.0,6.17,3.74,Harry Potter and the Half-Blood Prince,7.77,6.06,0.64
-Ice Age Collection,3,2002,2009,1930.94,229.0,8.26,6.5,Ice Age,6.78,8.43,0.64
-The Godfather Collection,3,1972,1990,484.43,73.0,7.89,2.53,The Godfather Part III,8.57,6.64,0.62
-The Bourne Collection,3,2002,2007,945.36,205.0,3.85,3.57,The Bourne Identity,7.45,4.61,0.53
-Jurassic Park Collection,3,1993,2001,2045.87,229.0,8.47,3.97,Jurassic Park III,6.57,8.93,0.52
-Shrek Collection,4,2001,2010,2983.13,535.0,5.63,4.56,Shrek Forever After,6.87,5.58,0.48
-The Hobbit Collection,3,2012,2014,2935.52,750.0,3.83,3.82,The Hobbit: The Battle of the Five Armies,7.39,3.91,0.44
-The Dark Knight Collection,3,2005,2012,2463.74,585.0,4.32,2.49,Batman Begins,7.8,4.21,0.44
-The Matrix Collection,3,1999,2003,1627.11,363.0,4.92,2.83,The Matrix Revolutions,7.09,4.48,0.36
-Iron Man Collection,3,2008,2013,2424.68,540.0,4.18,3.12,Iron Man 2,6.93,4.49,0.35
-Die Hard Collection,4,1988,2007,1130.43,298.0,3.78,3.43,Die Hard 2,7.13,3.79,0.33
-Mission: Impossible Collection,5,1996,2015,2779.99,650.0,4.55,2.66,Mission: Impossible III,7.04,4.28,0.3
-Pirates of the Caribbean Collection,5,2003,2017,4525.53,1249.0,3.46,2.76,Pirates of the Caribbean: On Stranger Tides,7.28,3.62,0.29
-Alien Collection,4,1979,1997,610.02,149.5,6.37,2.31,Alien Resurrection,7.2,4.08,0.27
-Ocean's Collection,3,2001,2007,1124.77,280.0,3.66,3.3,Ocean's Twelve,6.74,4.02,0.24
-The Terminator Collection,4,1984,2009,1402.54,508.4,3.63,1.86,Terminator Salvation,6.96,2.76,0.12
+collection_name,films_released,films_on_list,films_with_money,first_year,last_year,whole_budget_m,whole_revenue_m,whole_median_film_return,whole_weakest_film_return,median_rating,not_on_list,whole_bundle_return,complete,score
+The Lord of the Rings Collection,3,3,3,2001,2003,266.0,2916.54,11.73,9.37,8.45,,10.96,True,0.98
+Back to the Future Collection,3,3,3,1985,1990,99.0,969.49,8.32,6.13,7.8,,9.79,True,0.9
+The Avengers Collection,4,4,4,2012,2019,1111.0,7919.28,6.87,5.98,8.17,,7.13,True,0.89
+Toy Story Collection,5,4,5,1995,2026,745.0,4187.72,5.53,4.59,7.82,Toy Story 5,5.62,False,0.8
+The Godfather Collection,3,3,3,1972,1990,73.0,484.43,7.89,2.53,8.57,,6.64,True,0.76
+Harry Potter Collection,8,8,8,2001,2011,1280.0,7759.78,6.17,3.74,7.77,,6.06,True,0.71
+Ice Age Collection,6,3,5,2002,2022,429.0,3216.77,8.26,3.89,6.63,Ice Age: Continental Drift; Ice Age: Collision Course; The Ice Age Adventures of Buck Wild,7.5,False,0.61
+The Hobbit Collection,3,3,3,2012,2014,750.0,2935.52,3.83,3.82,7.39,,3.91,True,0.58
+The Dark Knight Collection,3,3,3,2005,2012,585.0,2463.74,4.32,2.49,7.8,,4.21,True,0.57
+Shrek Collection,4,4,4,2001,2010,535.0,2983.13,5.63,4.56,6.87,,5.58,True,0.56
+Star Wars Collection,9,6,9,1977,2019,1444.25,8909.19,8.44,2.19,7.24,Star Wars: The Force Awakens; Star Wars: The Rise of Skywalker; Star Wars: The Last Jedi,6.17,False,0.53
+Iron Man Collection,3,3,3,2008,2013,540.0,2424.68,4.18,3.12,6.93,,4.49,True,0.47
+Die Hard Collection,5,4,5,1988,2013,390.0,1435.09,3.49,3.31,6.97,A Good Day to Die Hard,3.68,False,0.42
+Pirates of the Caribbean Collection,5,5,5,2003,2017,1249.0,4525.53,3.46,2.76,7.28,,3.62,True,0.42
+Alien Collection,4,4,4,1979,1997,149.5,610.02,6.37,2.31,7.2,,4.08,True,0.41
+Indiana Jones Collection,5,4,5,1981,2023,573.7,2367.8,9.88,1.3,7.31,Indiana Jones and the Dial of Destiny,4.13,False,0.38
+Ocean's Collection,3,3,3,2001,2007,280.0,1124.77,3.66,3.3,6.74,,4.02,True,0.38
+The Bourne Collection,5,3,5,2002,2016,455.0,1637.44,3.57,2.13,7.34,The Bourne Legacy; Jason Bourne,3.6,False,0.36
+Jurassic Park Collection,7,3,7,1993,2025,1387.8,6901.03,7.71,1.52,6.57,Jurassic World; Jurassic World: Fallen Kingdom; Jurassic World Dominion; Jurassic World Rebirth,4.97,False,0.3
+Mission: Impossible Collection,8,5,8,1996,2025,1448.0,4774.06,4.46,1.5,7.14,Mission: Impossible - Fallout; Mission: Impossible - The Final Reckoning; Mission: Impossible - Dead Reckoning Part One,3.3,False,0.24
+The Matrix Collection,4,3,4,1999,2021,553.0,1783.6,3.88,0.82,6.92,The Matrix Resurrections,3.23,False,0.14
+The Terminator Collection,6,4,6,1984,2019,848.4,2104.26,2.51,1.41,6.31,Terminator Genisys; Terminator: Dark Fate,2.48,False,0.08

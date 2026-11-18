@@ -1,7 +1,7 @@
 import json
 import os
 import time
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -10,15 +10,20 @@ from dotenv import load_dotenv
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+import load_ids
+
 BASE_URL = "https://api.themoviedb.org/3"
 RAW_DIR = Path("data/raw")
 TIMEOUT = (3.05, 10)        # connect timeout, read timeout (seconds)
 PAUSE_SECONDS = 0.1         # be gentle: pause between live requests
 
-# Which URL each kind of data comes from.
+# Which URL each kind of data comes from, and any fixed query parameters.
 ENDPOINTS = {
-    "details": "/movie/{id}",
-    "credits": "/movie/{id}/credits",
+    "details": ("/movie/{id}", {}),
+    "credits": ("/movie/{id}/credits", {}),
+    "find": ("/find/{id}", {"external_source": "imdb_id"}),     # other-database ids (IMDb "tt...")
+    "collection": ("/collection/{id}", {}),                    # every film in a franchise, for whole-bundle value
+    "collection_parts": ("/movie/{id}", {}),                   # details of bundle films NOT on the candidate list
 }
 
 
@@ -36,27 +41,28 @@ def make_session():
     return session
 
 
-def fetch_one(session, api_key, movie_id, endpoint):
+def fetch_one(session, api_key, item_id, endpoint):
     """Get one response, from disk if we already have it.
 
     Returns (record, from_cache). The record holds status_code,
     fetched_at (UTC) and payload (the JSON, or None for a 404).
     """
-    path = RAW_DIR / endpoint / f"{movie_id}.json"
+    path = RAW_DIR / endpoint / f"{item_id}.json"
     if path.exists():
         return json.loads(path.read_text(encoding="utf-8")), True
 
-    url = BASE_URL + ENDPOINTS[endpoint].format(id=movie_id)
-    response = session.get(url, params={"api_key": api_key}, timeout=TIMEOUT)
+    url_template, extra_params = ENDPOINTS[endpoint]
+    url = BASE_URL + url_template.format(id=item_id)
+    response = session.get(url, params={"api_key": api_key, **extra_params}, timeout=TIMEOUT)
 
     if response.status_code == 404:
-        payload = None                 # the film doesn't exist: record it, don't crash
+        payload = None                 # it doesn't exist: record it, don't crash
     else:
         response.raise_for_status()    # anything else unexpected stops the run loudly
         payload = response.json()
 
     record = {
-        "movie_id": movie_id,
+        "movie_id": str(item_id),
         "endpoint": endpoint,
         "status_code": response.status_code,
         "fetched_at": datetime.now(timezone.utc).isoformat(),
@@ -68,19 +74,48 @@ def fetch_one(session, api_key, movie_id, endpoint):
     return record, False
 
 
+def resolve_other_database_ids(session, api_key):
+    """Look up every IMDb-style id, then reclassify the list with the answers (see load_ids)."""
+    ids = pd.read_csv("data/ids_classified.csv", dtype=str, keep_default_na=False)
+    made = 0
+    for raw in ids.loc[ids["status"] == "imdb_id", "raw_value"]:
+        _, from_cache = fetch_one(session, api_key, raw, "find")
+        made += 0 if from_cache else 1
+    load_ids.main()                      # now picks up the cached answers
+    return made
+
+
+def fetch_whole_bundles(session, api_key):
+    """For every collection on the list, fetch its full membership and the details of
+    released films that are NOT on the list, so a bundle can be valued as it is sold: whole."""
+    films = pd.read_csv("data/processed/films.csv", dtype={"collection_id": "Int64"})
+    on_list = set(films["movie_id"])
+    made = 0
+    for collection_id in films["collection_id"].dropna().unique():
+        record, from_cache = fetch_one(session, api_key, int(collection_id), "collection")
+        made += 0 if from_cache else 1
+        parts = (record["payload"] or {}).get("parts", [])
+        for part in parts:
+            released = part.get("release_date") and part["release_date"] <= date.today().isoformat()
+            if part["id"] not in on_list and released:
+                _, from_cache = fetch_one(session, api_key, part["id"], "collection_parts")
+                made += 0 if from_cache else 1
+    return made
+
+
 def main():
     load_dotenv()
     api_key = os.environ["TMDB_API_KEY"]
+    session = make_session()
+    requests_made = resolve_other_database_ids(session, api_key)
 
     ids = pd.read_csv("data/ids_classified.csv", dtype=str, keep_default_na=False)
     usable = ids.loc[ids["status"] == "usable", "tmdb_id"].tolist()
     assert len(usable) > 0, "no usable ids to fetch"
-    session = make_session()
     manifest = []
-    requests_made = 0
 
     for movie_id in usable:
-        for endpoint in ENDPOINTS:
+        for endpoint in ("details", "credits"):
             record, from_cache = fetch_one(session, api_key, movie_id, endpoint)
             requests_made += 0 if from_cache else 1
             manifest.append({

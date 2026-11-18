@@ -1,0 +1,9 @@
+title,kind,films,driving_return,value_units,per_film_vs_typical_standalone,share_of_budget,ceiling_m
+The Lord of the Rings Collection,bundle,3,9.37,6.26,2.09,0.24,3.33
+The Avengers Collection,bundle,4,5.98,5.33,1.33,0.2,2.84
+Harry Potter Collection,bundle,8,3.74,6.67,0.83,0.25,3.55
+Inception,standalone,1,5.24,1.17,1.17,0.04,0.62
+Interstellar,standalone,1,4.52,1.01,1.01,0.04,0.54
+Spirited Away,standalone,1,14.47,3.22,3.22,0.12,1.72
+The Incredibles,standalone,1,6.86,1.53,1.53,0.06,0.81
+"Monsters, Inc.",standalone,1,5.0,1.11,1.11,0.04,0.59

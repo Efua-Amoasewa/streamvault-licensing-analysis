@@ -1,43 +1,56 @@
 # Memo to Kwame
 
 **From:** Esther Acquandoh
-**Date:** 17 November 2026
+**Date:** 18 November 2026
 **Subject:** Franchise bundles or standalone hits for the $14M licensing budget
 
-## What I found
+## Recommendation
 
-Franchise bundles probably give a better return than standalone films, but the data does not prove it. The typical franchise film returned 5.5 times its budget at the box office, against 5.0 for standalone films. Looking only at films released since 2000 it is 5.1 against 4.5. When I reshuffled the data 10,000 times, franchises came out ahead about 8 times in 10, but the plausible gap includes zero.
+**Buy three specific franchises, not franchises as a category, and keep about 30% of the budget for standalone films.** Recent franchises have done somewhat better than standalone films, but not by enough to call bundles the safer kind of purchase. The case rests on three bundles whose *weakest* film beats a typical standalone. The rest of the budget should go on standalone films picked one at a time.
 
-Averages tell a different story when old films are included: standalone films average 10.5 times and franchises 7.9. Over half the standalone films date from before 2000, including Jaws (67 times) and Star Wars (70 times), so I used the middle film instead.
+## The comparison, both ways. The answer changes with the window
 
-Directors and lead actors are not a reason to buy. None met my test of 3+ films, in at least 2 series, with 75% beating the typical film. Peter Jackson's films beat the typical film half the time; Christopher Nolan's 29%.
-
-## What I built
-
-| What you asked for | Status | Evidence |
+| Box office earned per $1 of production budget | All years | 2000 onward |
 |---|---|---|
-| Check of the film list | Done | 127 lines became 112 films; every line accounted for in `data_findings.md` |
-| Analysis for both time periods | Done | One command reruns it; results in `outputs/run_report.md` |
-| Reasons for each decision | Done | Seven notes in `decisions/` |
-| Speed target of 5 seconds | Met | Under 0.25 seconds at 500 films, 1.4 seconds at 5,000 |
-| One improvement | Done | Automatic data check and run report (`improvement.md`) |
+| Typical franchise film | 5.5 | 5.1 |
+| Typical standalone film | 5.0 | 4.5 |
+| **Typical whole franchise, as sold** | **4.5** | **5.0** |
+| Franchise ahead when I re-ran it on 10,000 reshuffled lists | 4 in 10 times | 7 in 10 times |
 
-## What I recommend
+**Across all years, a whole franchise does worse than a standalone film.** Standalone films also win on average (10.5 against 7.9), because of 1970s hits like Jaws and Star Wars. **From 2000 onward, franchises lead on every measure**, but a gap of zero is still plausible. I relied on 2000 onward because it is today's market. Most franchises on the list are also missing their later, weaker sequels: Star Wars falls from 10.8 to 6.2 when valued whole, and Jurassic Park from 8.9 to 5.0. My figures use the whole franchise, because that is what a studio sells.
 
-Lead with franchise bundles from 2000 onward and keep a smaller standalone allocation as a hedge.
+## Shortlist and walk-away ceilings
 
-**Bundles:** *The Lord of the Rings* (three films, 11.0 times its cost, rated 8.5), *The Avengers* (four films, 7.1 times, rated 8.2) and *Harry Potter* (eight films, 6.1 times, the biggest library, with all eight films above 3.7 times).
+The ceilings are each title's share of the $14M if you bought all eight, set by its box-office record against a typical recent standalone film. They are relative limits, not market prices.
 
-**Standalones:** *Inception* (5.2 times, rated 8.4), *Interstellar* (4.5 times, rated 8.5), *Spirited Away* (14.5 times on a $19M budget), *The Incredibles* (6.9 times) and *Monsters, Inc.* (5.0 times). The last two have sequels you may be able to license with them.
+| Title | Why it made the cut | Ceiling |
+|---|---|---|
+| *The Lord of the Rings* (3 films) | Best franchise on every measure; weakest film 9.4 | $3.3M |
+| *The Avengers* (4 films) | 7.1 overall; weakest film 6.0; rated 8.2 | $2.8M |
+| *Harry Potter* (8 films) | Largest library; every film above 3.7 | $3.6M (less per film than a typical standalone) |
+| *Inception* | 5.2; $839M earned; rated 8.4 | $0.6M |
+| *Interstellar* | 4.5; $747M earned; rated 8.5 | $0.5M |
+| *Spirited Away* | 14.5 on a $19M budget; rated 8.5 | $1.7M |
+| *The Incredibles* | 6.9; has a sequel, so may only be sold as a pair | $0.8M |
+| *Monsters, Inc.* | 5.0; has a sequel; its figures look rounded | $0.6M |
 
-**Deal note, *The Lord of the Rings*:** the three films cost $266M to make and earned $2.92 billion. The number that drove this choice is **9.37 times**, the return of the weakest film (*The Fellowship of the Ring*). It is higher than the typical film in either group, so the bundle does not depend on picking the right film.
+That splits the budget roughly $9.7M on franchises and $4.3M on standalones.
+
+## Deal note: *The Lord of the Rings*
+
+The three films cost $266M to make and earned $2.92 billion. Pay up to about **twice the per-film price of a typical recent standalone**, which puts the trilogy at about six standalone films' worth, or roughly a quarter of the budget ($3.3M if you buy the whole shortlist). Walk away above that. The number that drove this is **9.4**: what the *weakest* film, *The Fellowship of the Ring*, earned per dollar of budget, against 4.5 for a typical standalone. In a bundle you pay for every film, so the weakest one sets the price. Here even the weakest is a top performer.
+
+## Directors and lead actors
+
+Do not pay extra for a name. Since 2000, no director or lead actor reliably signals a hit once the franchise is set aside: Christopher Nolan's films beat the typical film 29% of the time, and Peter Jackson's 50%. Across all years, Steven Spielberg, Robert Zemeckis and Tom Hanks pass, but on 1975–1997 films or, for Hanks, mostly Toy Story. If a studio asks for a premium for a name, nothing in this list supports it.
 
 ## What I could not stand behind
 
-- **Licence prices.** I have box-office figures, not what these rights cost. A bundle that returns 11 times at the cinema may cost far more to license; check prices before committing the $14M.
-- **Availability.** I do not know whether any of these rights are for sale.
-- **Best-case numbers.** Every film in the list earned more than it cost, so the list is made of hits.
-- **Old money.** Amounts are not adjusted for inflation and show box-office, not profit.
-- **Small groups.** Only 12 standalone films since 2000.
-- **Missing films.** 5 ids are unknown to the database, 4 were invalid, 6 were repeats and one film is missing because its id used another database's format.
-- **Check against the source.** A live check of 12 films (84 facts) found no differences. Data is as of 17 November 2026.
+- **Licence prices.** I have box office, not what the rights cost. The ceilings tell you when a quote is out of line with the rest of the list, not whether it is cheap.
+- **Availability.** I don't know whether these rights are for sale, or whether studios will sell a franchise without its newest films.
+- **A list of hits only.** Every film earned more than it cost, so all figures are best cases. Only the comparisons between options are fair.
+- **Old money.** Figures are not adjusted for inflation, and box office is not streaming viewing.
+- **Small numbers.** Only 12 standalone films and 12 complete recent franchises. One film can move a result.
+- **The candidate list.** 127 lines became 112 films. Seven lines repeated a film already on the list, three were blank or invalid, and five are unknown to the database. No real film was lost.
+
+The data is as of 17–18 November 2026. A live re-check of 13 films found no differences from our stored copy.
