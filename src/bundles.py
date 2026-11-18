@@ -1,7 +1,6 @@
 """Whole bundles: a franchise is sold all-or-none, so value it with every released film in it,
 not only the films that happen to be on the candidate list."""
 import json
-from datetime import date
 from pathlib import Path
 
 import pandas as pd
@@ -12,23 +11,35 @@ RAW_DIR = Path("data/raw")
 OUT = Path("data/processed/bundle_parts.csv")
 
 
-def _payloads(endpoint):
+def _records(endpoint):
     for path in sorted((RAW_DIR / endpoint).glob("*.json")):
         record = json.loads(path.read_text(encoding="utf-8"))
         if record["payload"] is not None:
-            yield record["payload"]
+            yield record
+
+
+def _payloads(endpoint):
+    for record in _records(endpoint):
+        yield record["payload"]
 
 
 def build_parts(films):
-    """One row per released film per collection, with money from the list or from the extra fetch."""
-    rows = [{"collection_id": c["id"], "collection_name": c["name"], "movie_id": p["id"],
-             "title": p["title"], "release_date": p.get("release_date") or ""}
-            for c in _payloads("collection") for p in c.get("parts", [])]
+    """One row per released film per collection, with money from the list or from the extra fetch.
+
+    "Released" means released by the day the franchise list was fetched, not by today: the saved
+    answers then give the same result on every rerun, and a film that comes out later is picked up
+    only when the list is fetched again (with its figures). Judged against today, a saved list would
+    start counting a new film with no figures the day it opens."""
+    rows = [{"collection_id": c["payload"]["id"], "collection_name": c["payload"]["name"], "movie_id": p["id"],
+             "title": p["title"], "release_date": p.get("release_date") or "",
+             "list_fetched_on": c["fetched_at"][:10]}
+            for c in _records("collection") for p in c["payload"].get("parts", [])]
     if not rows:
         return pd.DataFrame(columns=["collection_id", "collection_name", "movie_id", "title", "release_date",
-                                     "on_list", "budget", "revenue", "vote_average", "release_year"])
+                                     "list_fetched_on", "on_list", "budget", "revenue", "vote_average",
+                                     "release_year"])
     parts = pd.DataFrame(rows)
-    parts = parts.loc[(parts["release_date"] != "") & (parts["release_date"] <= date.today().isoformat())]
+    parts = parts.loc[(parts["release_date"] != "") & (parts["release_date"] <= parts["list_fetched_on"])]
 
     fields = ["movie_id", "budget", "revenue", "vote_average"]
     extra = pd.DataFrame([{"movie_id": d["id"], "budget": d["budget"], "revenue": d["revenue"],

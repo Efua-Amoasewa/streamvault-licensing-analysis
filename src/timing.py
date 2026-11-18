@@ -1,4 +1,4 @@
-"""Measure run time against the budget in ADR-011.
+"""Measure run time against the budget in ADR-004.
 
 Two measurements:
 1. End to end: the real command (`python src/run_all.py --offline`) in a throw-away copy of the
@@ -28,7 +28,7 @@ SIZES = [112, 500, 5000]          # real list, next year's list, a stress test
 END_TO_END_SIZES = [112, 500]     # sizes for the full command (5,000 would mean 10,000+ files)
 RUNS = 5                          # timed runs per size (after one warm-up run)
 E2E_RUNS = 3
-TARGET_SECONDS = 10.0             # ADR-011: whole offline run, from typing the command to the report
+TARGET_SECONDS = 10.0             # ADR-004: whole offline run, from typing the command to the report
 ID_OFFSET = 1_000_000             # keeps ids unique when the real list is copied
 ROOT = Path(".").resolve()
 
@@ -70,12 +70,23 @@ def build_project(n, dest):
         for fid in take:
             for endpoint in ("details", "credits"):
                 new = _shift_json(raw / endpoint / f"{fid}.json", dest / "data/raw" / endpoint, endpoint, shift, suffix)
-                status = json.loads((raw / endpoint / f"{fid}.json").read_text(encoding="utf-8"))["status_code"]
-                manifest.append({"movie_id": new, "endpoint": endpoint, "status_code": status, "fetched_at": ""})
+                saved = json.loads((raw / endpoint / f"{fid}.json").read_text(encoding="utf-8"))
+                manifest.append({"movie_id": new, "endpoint": endpoint, "status_code": saved["status_code"],
+                                 "fetched_at": saved["fetched_at"]})
             ids.append(fid + shift)
         for endpoint in ("collection", "collection_parts"):
             for path in (raw / endpoint).glob("*.json"):
                 _shift_json(path, dest / "data/raw" / endpoint, endpoint, shift, suffix)
+        # A partial copy leaves out some franchise films; give them figures as franchise films
+        # not on the list, exactly as a real online run would fetch them.
+        on_copy = {fid + shift for fid in take}
+        for path in (raw / "collection").glob("*.json"):
+            payload = json.loads(path.read_text(encoding="utf-8"))["payload"] or {}
+            for part in payload.get("parts", []):
+                details = raw / "details" / f"{part['id']}.json"
+                target = dest / "data/raw/collection_parts" / f"{part['id'] + shift}.json"
+                if part["id"] + shift not in on_copy and details.exists() and not target.exists():
+                    _shift_json(details, dest / "data/raw/collection_parts", "collection_parts", shift, suffix)
     pd.DataFrame({"tmdb_id": ids}).to_csv(dest / "data" / "id_list.csv", index=False)
     pd.DataFrame(manifest).to_csv(dest / "data" / "raw" / "manifest.csv", index=False)
     return len(ids)
@@ -138,14 +149,8 @@ def run_stages(films, directors, leads, parts):
     timed("entry position", lambda: shortlist.entry_position(classified))
     timed("talent", lambda: [talent.talent_table(window, people)
                              for window in (classified, modern) for people in (directors, leads)])
-    rng = np.random.default_rng(uncertainty.SEED)
-
-    def boot():
-        for w in (classified, modern):
-            fr = w.loc[w["group"] == "franchise"]
-            uncertainty.bootstrap_gap(fr["return_multiple"], w.loc[w["group"] == "standalone", "return_multiple"],
-                                      rng, fr["collection_name"].fillna(fr["movie_id"].astype(str)))
-    timed("bootstrap", boot)
+    timed("uncertainty (all 14 comparisons)",
+          lambda: uncertainty.gap_rows(films, whole, np.random.default_rng(uncertainty.SEED)))
     return seconds
 
 
@@ -188,7 +193,7 @@ def main():
 
     lines = [
         "# Run time report", "",
-        "## Target (ADR-011)", "",
+        "## Target (ADR-004)", "",
         f"The whole offline run, from typing the command to a finished report, takes under {TARGET_SECONDS:.0f} seconds "
         "on Adjoa's laptop at next year's list size (about 500 films). That is short enough to rerun live in a meeting.", "",
         "## Method", "",
@@ -218,7 +223,7 @@ def main():
         "- Timings are from one laptop. Another machine will differ; the shape (how time grows with size) should hold.",
         "- The very first run after a restart can be a few seconds slower while the system loads Python and the files from disk.",
         "- Copied data repeats the same films, so it tests speed and memory, not new findings.",
-        "- The bootstrap draws resamples in batches of 1,000 so memory stays small at any list size.",
+        "- The uncertainty stage runs all 14 comparisons the report prints, each with 10,000 resamples of both groups, drawn in batches of 1,000 so memory stays small at any list size.",
     ]
     Path("timing_report.md").write_text("\n".join(lines), encoding="utf-8")
     print("\nwrote timing_report.md")

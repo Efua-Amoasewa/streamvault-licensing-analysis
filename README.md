@@ -43,7 +43,7 @@ Replace `data/id_list.csv` (one column headed `tmdb_id`) and run `python src/run
 - `data/` the id list, saved database answers (`raw`: film details, credits, id lookups, franchise lists, figures for franchise films not on the list) and flattened tables (`processed`)
 - `src/` the code (`run_all.py` runs it in order); `src/explore/` holds the one-off profiling scripts used to find the data problems
 - `outputs/` tables and the run report
-- `decisions/` one note per decision (ADR-001 to ADR-011)
+- `decisions/` five decision notes (ADR-001 to ADR-005); related calls share a note
 - `data_findings.md`, `client_memo.md`, `improvement.md`, `timing_report.md`
 
 ## Attribution

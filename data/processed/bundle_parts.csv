@@ -1,136 +1,136 @@
-collection_id,collection_name,movie_id,title,release_date,budget,revenue,vote_average,on_list,release_year
-10,Star Wars Collection,11,Star Wars,1977-05-25,11000000,775398007,8.206,True,1977
-10,Star Wars Collection,1891,The Empire Strikes Back,1980-05-20,18000000,538400000,8.392,True,1980
-10,Star Wars Collection,1892,Return of the Jedi,1983-05-25,32350000,572700000,7.9,True,1983
-10,Star Wars Collection,1893,Star Wars: Episode I - The Phantom Menace,1999-05-19,115000000,1046515409,6.582,True,1999
-10,Star Wars Collection,1894,Star Wars: Episode II - Attack of the Clones,2002-05-15,120000000,649398328,6.597,True,2002
-10,Star Wars Collection,1895,Star Wars: Episode III - Revenge of the Sith,2005-05-17,113000000,850000000,7.479,True,2005
-10,Star Wars Collection,140607,Star Wars: The Force Awakens,2015-12-15,245000000,2068223624,7.237,False,2015
-10,Star Wars Collection,181812,Star Wars: The Rise of Skywalker,2019-12-18,489900000,1074144248,6.236,False,2019
-10,Star Wars Collection,181808,Star Wars: The Last Jedi,2017-12-13,300000000,1334407706,6.727,False,2017
-10194,Toy Story Collection,862,Toy Story,1995-11-22,30000000,401157969,7.99,True,1995
-10194,Toy Story Collection,863,Toy Story 2,1999-10-30,90000000,497375404,7.623,True,1999
-10194,Toy Story Collection,10193,Toy Story 3,2010-06-16,200000000,1067316101,7.818,True,2010
-10194,Toy Story Collection,301528,Toy Story 4,2019-06-19,175000000,1073841394,7.459,True,2019
-10194,Toy Story Collection,1084244,Toy Story 5,2026-06-17,250000000,1148032461,8.242,False,2026
-119,The Lord of the Rings Collection,120,The Lord of the Rings: The Fellowship of the Ring,2001-12-18,93000000,871368364,8.451,True,2001
-119,The Lord of the Rings Collection,121,The Lord of the Rings: The Two Towers,2002-12-18,79000000,926287400,8.433,True,2002
-119,The Lord of the Rings Collection,122,The Lord of the Rings: The Return of the King,2003-12-17,94000000,1118888979,8.507,True,2003
-121938,The Hobbit Collection,49051,The Hobbit: An Unexpected Journey,2012-12-12,250000000,1021103568,7.389,True,2012
-121938,The Hobbit Collection,57158,The Hobbit: The Desolation of Smaug,2013-12-11,250000000,958400000,7.579,True,2013
-121938,The Hobbit Collection,122917,The Hobbit: The Battle of the Five Armies,2014-12-10,250000000,956019788,7.341,True,2014
-1241,Harry Potter Collection,671,Harry Potter and the Philosopher's Stone,2001-11-16,125000000,1029374615,7.905,True,2001
-1241,Harry Potter Collection,672,Harry Potter and the Chamber of Secrets,2002-11-13,100000000,876688482,7.71,True,2002
-1241,Harry Potter Collection,674,Harry Potter and the Goblet of Fire,2005-11-16,150000000,895921036,7.804,True,2005
-1241,Harry Potter Collection,767,Harry Potter and the Half-Blood Prince,2009-07-15,250000000,933959197,7.682,True,2009
-1241,Harry Potter Collection,673,Harry Potter and the Prisoner of Azkaban,2004-05-31,130000000,789804554,8.015,True,2004
-1241,Harry Potter Collection,675,Harry Potter and the Order of the Phoenix,2007-07-08,150000000,938212738,7.673,True,2007
-1241,Harry Potter Collection,12444,Harry Potter and the Deathly Hallows: Part 1,2010-11-17,250000000,954305868,7.732,True,2010
-1241,Harry Potter Collection,12445,Harry Potter and the Deathly Hallows: Part 2,2011-07-12,125000000,1341511219,8.082,True,2011
-131292,Iron Man Collection,10138,Iron Man 2,2010-04-28,200000000,623933331,6.856,True,2010
-131292,Iron Man Collection,68721,Iron Man 3,2013-04-18,200000000,1215577205,6.932,True,2013
-131292,Iron Man Collection,1726,Iron Man,2008-04-30,140000000,585174222,7.668,True,2008
-134897,The Smurfs (Theatrical) Collection,77931,The Smurfs 2,2013-07-30,105000000,347434178,5.748,False,2013
-134897,The Smurfs (Theatrical) Collection,41513,The Smurfs,2011-07-29,110000000,563749323,5.752,True,2011
-137696,"Monsters, Inc. Collection",585,"Monsters, Inc.",2001-11-01,130000000,650000000,7.86,True,2001
-137696,"Monsters, Inc. Collection",62211,Monsters University,2013-06-19,200000000,743559465,7.06,False,2013
-1570,Die Hard Collection,562,Die Hard,1988-07-15,28000000,140767956,7.818,True,1988
-1570,Die Hard Collection,1571,Live Free or Die Hard,2007-06-20,110000000,383531464,6.642,True,2007
-1570,Die Hard Collection,1572,Die Hard: With a Vengeance,1995-05-19,90000000,366101666,7.289,True,1995
-1570,Die Hard Collection,1573,Die Hard 2,1990-07-03,70000000,240031094,6.971,True,1990
-1570,Die Hard Collection,47964,A Good Day to Die Hard,2013-02-06,92000000,304654182,5.32,False,2013
-2150,Shrek Collection,808,Shrek,2001-05-18,60000000,489676241,7.781,True,2001
-2150,Shrek Collection,809,Shrek 2,2004-05-19,150000000,932542741,7.333,True,2004
-2150,Shrek Collection,810,Shrek the Third,2007-05-17,160000000,808310187,6.317,True,2007
-2150,Shrek Collection,10192,Shrek Forever After,2010-05-16,165000000,752600867,6.416,True,2010
-230,The Godfather Collection,238,The Godfather,1972-03-14,6000000,245066411,8.688,True,1972
-230,The Godfather Collection,240,The Godfather Part II,1974-12-20,13000000,102600000,8.573,True,1974
-230,The Godfather Collection,242,The Godfather Part III,1990-12-25,54000000,136766062,7.412,True,1990
-2344,The Matrix Collection,603,The Matrix,1999-03-31,63000000,463517383,8.263,True,1999
-2344,The Matrix Collection,604,The Matrix Reloaded,2003-05-15,150000000,738599701,7.086,True,2003
-2344,The Matrix Collection,605,The Matrix Revolutions,2003-11-05,150000000,424988211,6.762,True,2003
-2344,The Matrix Collection,624860,The Matrix Resurrections,2021-12-16,190000000,156497322,6.296,False,2021
-2366,Jaws Collection,578,Jaws,1975-06-20,7000000,470653000,7.687,True,1975
-2366,Jaws Collection,579,Jaws 2,1978-06-16,20000000,187884000,6.035,False,1978
-2366,Jaws Collection,580,Jaws: The Revenge,1987-07-17,23000000,51881012,4.092,False,1987
-2366,Jaws Collection,17692,Jaws 3-D,1983-07-22,20500000,87987056,4.5,False,1983
-263,The Dark Knight Collection,155,The Dark Knight,2008-07-16,185000000,1008480529,8.54,True,2008
-263,The Dark Knight Collection,49026,The Dark Knight Rises,2012-07-17,250000000,1081041287,7.801,True,2012
-263,The Dark Knight Collection,272,Batman Begins,2005-06-10,150000000,374218673,7.733,True,2005
-264,Back to the Future Collection,105,Back to the Future,1985-07-03,19000000,391546852,8.332,True,1985
-264,Back to the Future Collection,165,Back to the Future Part II,1989-11-22,40000000,332861197,7.8,True,1989
-264,Back to the Future Collection,196,Back to the Future Part III,1990-05-25,40000000,245077583,7.5,True,1990
-2883,Kill Bill Collection,24,Kill Bill: Vol. 1,2003-10-10,30000000,180906076,7.97,True,2003
-2883,Kill Bill Collection,393,Kill Bill: Vol. 2,2004-04-16,30000000,152159461,7.872,True,2004
-295,Pirates of the Caribbean Collection,22,Pirates of the Caribbean: The Curse of the Black Pearl,2003-07-09,140000000,655011224,7.838,True,2003
-295,Pirates of the Caribbean Collection,58,Pirates of the Caribbean: Dead Man's Chest,2006-07-06,200000000,1066179747,7.393,True,2006
-295,Pirates of the Caribbean Collection,285,Pirates of the Caribbean: At World's End,2007-05-19,300000000,961691209,7.281,True,2007
-295,Pirates of the Caribbean Collection,1865,Pirates of the Caribbean: On Stranger Tides,2011-05-15,379000000,1046721266,6.576,True,2011
-295,Pirates of the Caribbean Collection,166426,Pirates of the Caribbean: Dead Men Tell No Tales,2017-05-23,230000000,795922298,6.666,True,2017
-2980,Ghostbusters Collection,620,Ghostbusters,1984-06-08,30000000,296640120,7.496,True,1984
-2980,Ghostbusters Collection,2978,Ghostbusters II,1989-06-16,37000000,215394738,6.605,False,1989
-2980,Ghostbusters Collection,425909,Ghostbusters: Afterlife,2021-11-18,75000000,204445747,7.289,False,2021
-2980,Ghostbusters Collection,967847,Ghostbusters: Frozen Empire,2024-03-20,100000000,201967521,6.404,False,2024
-304,Ocean's Collection,161,Ocean's Eleven,2001-12-07,85000000,450717150,7.468,True,2001
-304,Ocean's Collection,163,Ocean's Twelve,2004-12-09,110000000,362744280,6.572,True,2004
-304,Ocean's Collection,298,Ocean's Thirteen,2007-06-05,85000000,311312624,6.737,True,2007
-31562,The Bourne Collection,2501,The Bourne Identity,2002-06-14,60000000,214034224,7.491,True,2002
-31562,The Bourne Collection,2502,The Bourne Supremacy,2004-07-23,75000000,288500217,7.339,True,2004
-31562,The Bourne Collection,2503,The Bourne Ultimatum,2007-08-03,70000000,442824138,7.45,True,2007
-31562,The Bourne Collection,49040,The Bourne Legacy,2012-08-08,130000000,276600000,6.255,False,2012
-31562,The Bourne Collection,324668,Jason Bourne,2016-07-27,120000000,415484914,6.389,False,2016
-328,Jurassic Park Collection,329,Jurassic Park,1993-06-11,63000000,1058454230,7.977,True,1993
-328,Jurassic Park Collection,330,The Lost World: Jurassic Park,1997-05-23,73000000,618638999,6.566,True,1997
-328,Jurassic Park Collection,331,Jurassic Park III,2001-07-18,93000000,368780809,6.179,True,2001
-328,Jurassic Park Collection,135397,Jurassic World,2015-06-06,150000000,1671537444,6.702,False,2015
-328,Jurassic Park Collection,351286,Jurassic World: Fallen Kingdom,2018-06-06,170000000,1310469037,6.518,False,2018
-328,Jurassic Park Collection,507086,Jurassic World Dominion,2022-06-01,658800000,1004004592,6.572,False,2022
-328,Jurassic Park Collection,1234821,Jurassic World Rebirth,2025-06-23,180000000,869146189,6.237,False,2025
-422837,Blade Runner Collection,78,Blade Runner,1982-06-25,28000000,41722424,7.937,True,1982
-422837,Blade Runner Collection,335984,Blade Runner 2049,2017-10-04,150000000,259239658,7.615,False,2017
-468222,The Incredibles Collection,9806,The Incredibles,2004-10-27,92000000,631442092,7.73,True,2004
-468222,The Incredibles Collection,260513,Incredibles 2,2018-06-14,200000000,1243225667,7.451,False,2018
-528,The Terminator Collection,218,The Terminator,1984-10-26,6400000,78371200,7.699,True,1984
-528,The Terminator Collection,280,Terminator 2: Judgment Day,1991-07-03,102000000,517814175,8.178,True,1991
-528,The Terminator Collection,296,Terminator 3: Rise of the Machines,2003-07-02,200000000,435000000,6.216,True,2003
-528,The Terminator Collection,534,Terminator Salvation,2009-05-20,200000000,371353001,6.108,True,2009
-528,The Terminator Collection,87101,Terminator Genisys,2015-06-23,155000000,440603537,5.965,False,2015
-528,The Terminator Collection,290859,Terminator: Dark Fate,2019-10-23,185000000,261119292,6.412,False,2019
-8091,Alien Collection,348,Alien,1979-05-25,11000000,104931801,8.2,True,1979
-8091,Alien Collection,679,Aliens,1986-07-18,18500000,183316455,8.0,True,1986
-8091,Alien Collection,8077,Alien³,1992-05-22,50000000,159773545,6.4,True,1992
-8091,Alien Collection,8078,Alien Resurrection,1997-11-12,70000000,162000000,6.17,True,1997
-8354,Ice Age Collection,57800,Ice Age: Continental Drift,2012-06-27,95000000,877244782,6.396,False,2012
-8354,Ice Age Collection,425,Ice Age,2002-03-14,59000000,383257136,7.388,True,2002
-8354,Ice Age Collection,8355,Ice Age: Dawn of the Dinosaurs,2009-06-26,90000000,886686817,6.783,True,2009
-8354,Ice Age Collection,950,Ice Age: The Meltdown,2006-03-29,80000000,660998756,6.733,True,2006
-8354,Ice Age Collection,278154,Ice Age: Collision Course,2016-06-23,105000000,408579038,6.118,False,2016
-8354,Ice Age Collection,774825,The Ice Age Adventures of Buck Wild,2022-01-28,0,0,6.533,False,2022
-84,Indiana Jones Collection,85,Raiders of the Lost Ark,1981-06-12,18000000,389925971,7.928,True,1981
-84,Indiana Jones Collection,87,Indiana Jones and the Temple of Doom,1984-05-23,28000000,333107271,7.309,True,1984
-84,Indiana Jones Collection,89,Indiana Jones and the Last Crusade,1989-05-24,48000000,474171806,7.9,True,1989
-84,Indiana Jones Collection,217,Indiana Jones and the Kingdom of the Crystal Skull,2008-05-21,185000000,786636033,6.027,True,2008
-84,Indiana Jones Collection,335977,Indiana Jones and the Dial of Destiny,2023-06-25,294700000,383963057,6.487,False,2023
-86311,The Avengers Collection,24428,The Avengers,2012-04-25,220000000,1518815515,8.085,True,2012
-86311,The Avengers Collection,99861,Avengers: Age of Ultron,2015-04-22,235000000,1405403694,7.278,True,2015
-86311,The Avengers Collection,299536,Avengers: Infinity War,2018-04-25,300000000,2052415039,8.247,True,2018
-86311,The Avengers Collection,299534,Avengers: Endgame,2019-04-24,356000000,2942649778,8.247,True,2019
-87359,Mission: Impossible Collection,954,Mission: Impossible,1996-05-22,80000000,457696391,7.036,True,1996
-87359,Mission: Impossible Collection,955,Mission: Impossible II,2000-05-24,125000000,546388108,6.14,True,2000
-87359,Mission: Impossible Collection,956,Mission: Impossible III,2006-04-25,150000000,398479497,6.768,True,2006
-87359,Mission: Impossible Collection,56292,Mission: Impossible - Ghost Protocol,2011-12-07,145000000,694713380,7.121,True,2011
-87359,Mission: Impossible Collection,177677,Mission: Impossible - Rogue Nation,2015-07-28,150000000,682716636,7.228,True,2015
-87359,Mission: Impossible Collection,353081,Mission: Impossible - Fallout,2018-07-25,178000000,824171374,7.454,False,2018
-87359,Mission: Impossible Collection,575265,Mission: Impossible - The Final Reckoning,2025-05-17,400000000,598767057,7.168,False,2025
-87359,Mission: Impossible Collection,575264,Mission: Impossible - Dead Reckoning Part One,2023-07-08,220000000,571125435,7.502,False,2023
-8945,Mad Max Collection,8810,Mad Max 2,1981-12-24,2000000,24600832,7.394,False,1981
-8945,Mad Max Collection,9355,Mad Max Beyond Thunderdome,1985-06-29,10000000,36230219,6.219,False,1985
-8945,Mad Max Collection,9659,Mad Max,1979-04-12,350000,100000000,6.683,False,1979
-8945,Mad Max Collection,76341,Mad Max: Fury Road,2015-05-13,150000000,378858340,7.642,True,2015
-8945,Mad Max Collection,786892,Furiosa: A Mad Max Saga,2024-05-22,168000000,174287546,7.439,False,2024
-94032,The Lion King Collection,11430,The Lion King 1½,2004-10-28,0,1465,6.59,False,2004
-94032,The Lion King Collection,9732,The Lion King II: Simba's Pride,1998-10-24,0,0,6.938,False,1998
-94032,The Lion King Collection,8587,The Lion King,1994-06-15,45000000,763455561,8.25,True,1994
-9743,The Hannibal Lecter Collection,274,The Silence of the Lambs,1991-02-14,19000000,272742922,8.3,True,1991
-9743,The Hannibal Lecter Collection,9533,Red Dragon,2002-10-02,78000000,209196298,7.052,False,2002
-9743,The Hannibal Lecter Collection,9740,Hannibal,2001-02-08,87000000,351692268,6.779,False,2001
+collection_id,collection_name,movie_id,title,release_date,list_fetched_on,budget,revenue,vote_average,on_list,release_year
+10,Star Wars Collection,11,Star Wars,1977-05-25,2026-11-18,11000000,775398007,8.206,True,1977
+10,Star Wars Collection,1891,The Empire Strikes Back,1980-05-20,2026-11-18,18000000,538400000,8.392,True,1980
+10,Star Wars Collection,1892,Return of the Jedi,1983-05-25,2026-11-18,32350000,572700000,7.9,True,1983
+10,Star Wars Collection,1893,Star Wars: Episode I - The Phantom Menace,1999-05-19,2026-11-18,115000000,1046515409,6.582,True,1999
+10,Star Wars Collection,1894,Star Wars: Episode II - Attack of the Clones,2002-05-15,2026-11-18,120000000,649398328,6.597,True,2002
+10,Star Wars Collection,1895,Star Wars: Episode III - Revenge of the Sith,2005-05-17,2026-11-18,113000000,850000000,7.479,True,2005
+10,Star Wars Collection,140607,Star Wars: The Force Awakens,2015-12-15,2026-11-18,245000000,2068223624,7.237,False,2015
+10,Star Wars Collection,181812,Star Wars: The Rise of Skywalker,2019-12-18,2026-11-18,489900000,1074144248,6.236,False,2019
+10,Star Wars Collection,181808,Star Wars: The Last Jedi,2017-12-13,2026-11-18,300000000,1334407706,6.727,False,2017
+10194,Toy Story Collection,862,Toy Story,1995-11-22,2026-11-18,30000000,401157969,7.99,True,1995
+10194,Toy Story Collection,863,Toy Story 2,1999-10-30,2026-11-18,90000000,497375404,7.623,True,1999
+10194,Toy Story Collection,10193,Toy Story 3,2010-06-16,2026-11-18,200000000,1067316101,7.818,True,2010
+10194,Toy Story Collection,301528,Toy Story 4,2019-06-19,2026-11-18,175000000,1073841394,7.459,True,2019
+10194,Toy Story Collection,1084244,Toy Story 5,2026-06-17,2026-11-18,250000000,1148032461,8.242,False,2026
+119,The Lord of the Rings Collection,120,The Lord of the Rings: The Fellowship of the Ring,2001-12-18,2026-11-18,93000000,871368364,8.451,True,2001
+119,The Lord of the Rings Collection,121,The Lord of the Rings: The Two Towers,2002-12-18,2026-11-18,79000000,926287400,8.433,True,2002
+119,The Lord of the Rings Collection,122,The Lord of the Rings: The Return of the King,2003-12-17,2026-11-18,94000000,1118888979,8.507,True,2003
+121938,The Hobbit Collection,49051,The Hobbit: An Unexpected Journey,2012-12-12,2026-11-18,250000000,1021103568,7.389,True,2012
+121938,The Hobbit Collection,57158,The Hobbit: The Desolation of Smaug,2013-12-11,2026-11-18,250000000,958400000,7.579,True,2013
+121938,The Hobbit Collection,122917,The Hobbit: The Battle of the Five Armies,2014-12-10,2026-11-18,250000000,956019788,7.341,True,2014
+1241,Harry Potter Collection,671,Harry Potter and the Philosopher's Stone,2001-11-16,2026-11-18,125000000,1029374615,7.905,True,2001
+1241,Harry Potter Collection,672,Harry Potter and the Chamber of Secrets,2002-11-13,2026-11-18,100000000,876688482,7.71,True,2002
+1241,Harry Potter Collection,674,Harry Potter and the Goblet of Fire,2005-11-16,2026-11-18,150000000,895921036,7.804,True,2005
+1241,Harry Potter Collection,767,Harry Potter and the Half-Blood Prince,2009-07-15,2026-11-18,250000000,933959197,7.682,True,2009
+1241,Harry Potter Collection,673,Harry Potter and the Prisoner of Azkaban,2004-05-31,2026-11-18,130000000,789804554,8.015,True,2004
+1241,Harry Potter Collection,675,Harry Potter and the Order of the Phoenix,2007-07-08,2026-11-18,150000000,938212738,7.673,True,2007
+1241,Harry Potter Collection,12444,Harry Potter and the Deathly Hallows: Part 1,2010-11-17,2026-11-18,250000000,954305868,7.732,True,2010
+1241,Harry Potter Collection,12445,Harry Potter and the Deathly Hallows: Part 2,2011-07-12,2026-11-18,125000000,1341511219,8.082,True,2011
+131292,Iron Man Collection,10138,Iron Man 2,2010-04-28,2026-11-18,200000000,623933331,6.856,True,2010
+131292,Iron Man Collection,68721,Iron Man 3,2013-04-18,2026-11-18,200000000,1215577205,6.932,True,2013
+131292,Iron Man Collection,1726,Iron Man,2008-04-30,2026-11-18,140000000,585174222,7.668,True,2008
+134897,The Smurfs (Theatrical) Collection,77931,The Smurfs 2,2013-07-30,2026-11-18,105000000,347434178,5.748,False,2013
+134897,The Smurfs (Theatrical) Collection,41513,The Smurfs,2011-07-29,2026-11-18,110000000,563749323,5.752,True,2011
+137696,"Monsters, Inc. Collection",585,"Monsters, Inc.",2001-11-01,2026-11-18,130000000,650000000,7.86,True,2001
+137696,"Monsters, Inc. Collection",62211,Monsters University,2013-06-19,2026-11-18,200000000,743559465,7.06,False,2013
+1570,Die Hard Collection,562,Die Hard,1988-07-15,2026-11-18,28000000,140767956,7.818,True,1988
+1570,Die Hard Collection,1571,Live Free or Die Hard,2007-06-20,2026-11-18,110000000,383531464,6.642,True,2007
+1570,Die Hard Collection,1572,Die Hard: With a Vengeance,1995-05-19,2026-11-18,90000000,366101666,7.289,True,1995
+1570,Die Hard Collection,1573,Die Hard 2,1990-07-03,2026-11-18,70000000,240031094,6.971,True,1990
+1570,Die Hard Collection,47964,A Good Day to Die Hard,2013-02-06,2026-11-18,92000000,304654182,5.32,False,2013
+2150,Shrek Collection,808,Shrek,2001-05-18,2026-11-18,60000000,489676241,7.781,True,2001
+2150,Shrek Collection,809,Shrek 2,2004-05-19,2026-11-18,150000000,932542741,7.333,True,2004
+2150,Shrek Collection,810,Shrek the Third,2007-05-17,2026-11-18,160000000,808310187,6.317,True,2007
+2150,Shrek Collection,10192,Shrek Forever After,2010-05-16,2026-11-18,165000000,752600867,6.416,True,2010
+230,The Godfather Collection,238,The Godfather,1972-03-14,2026-11-18,6000000,245066411,8.688,True,1972
+230,The Godfather Collection,240,The Godfather Part II,1974-12-20,2026-11-18,13000000,102600000,8.573,True,1974
+230,The Godfather Collection,242,The Godfather Part III,1990-12-25,2026-11-18,54000000,136766062,7.412,True,1990
+2344,The Matrix Collection,603,The Matrix,1999-03-31,2026-11-18,63000000,463517383,8.263,True,1999
+2344,The Matrix Collection,604,The Matrix Reloaded,2003-05-15,2026-11-18,150000000,738599701,7.086,True,2003
+2344,The Matrix Collection,605,The Matrix Revolutions,2003-11-05,2026-11-18,150000000,424988211,6.762,True,2003
+2344,The Matrix Collection,624860,The Matrix Resurrections,2021-12-16,2026-11-18,190000000,156497322,6.296,False,2021
+2366,Jaws Collection,578,Jaws,1975-06-20,2026-11-18,7000000,470653000,7.687,True,1975
+2366,Jaws Collection,579,Jaws 2,1978-06-16,2026-11-18,20000000,187884000,6.035,False,1978
+2366,Jaws Collection,580,Jaws: The Revenge,1987-07-17,2026-11-18,23000000,51881012,4.092,False,1987
+2366,Jaws Collection,17692,Jaws 3-D,1983-07-22,2026-11-18,20500000,87987056,4.5,False,1983
+263,The Dark Knight Collection,155,The Dark Knight,2008-07-16,2026-11-18,185000000,1008480529,8.54,True,2008
+263,The Dark Knight Collection,49026,The Dark Knight Rises,2012-07-17,2026-11-18,250000000,1081041287,7.801,True,2012
+263,The Dark Knight Collection,272,Batman Begins,2005-06-10,2026-11-18,150000000,374218673,7.733,True,2005
+264,Back to the Future Collection,105,Back to the Future,1985-07-03,2026-11-18,19000000,391546852,8.332,True,1985
+264,Back to the Future Collection,165,Back to the Future Part II,1989-11-22,2026-11-18,40000000,332861197,7.8,True,1989
+264,Back to the Future Collection,196,Back to the Future Part III,1990-05-25,2026-11-18,40000000,245077583,7.5,True,1990
+2883,Kill Bill Collection,24,Kill Bill: Vol. 1,2003-10-10,2026-11-18,30000000,180906076,7.97,True,2003
+2883,Kill Bill Collection,393,Kill Bill: Vol. 2,2004-04-16,2026-11-18,30000000,152159461,7.872,True,2004
+295,Pirates of the Caribbean Collection,22,Pirates of the Caribbean: The Curse of the Black Pearl,2003-07-09,2026-11-18,140000000,655011224,7.838,True,2003
+295,Pirates of the Caribbean Collection,58,Pirates of the Caribbean: Dead Man's Chest,2006-07-06,2026-11-18,200000000,1066179747,7.393,True,2006
+295,Pirates of the Caribbean Collection,285,Pirates of the Caribbean: At World's End,2007-05-19,2026-11-18,300000000,961691209,7.281,True,2007
+295,Pirates of the Caribbean Collection,1865,Pirates of the Caribbean: On Stranger Tides,2011-05-15,2026-11-18,379000000,1046721266,6.576,True,2011
+295,Pirates of the Caribbean Collection,166426,Pirates of the Caribbean: Dead Men Tell No Tales,2017-05-23,2026-11-18,230000000,795922298,6.666,True,2017
+2980,Ghostbusters Collection,620,Ghostbusters,1984-06-08,2026-11-18,30000000,296640120,7.496,True,1984
+2980,Ghostbusters Collection,2978,Ghostbusters II,1989-06-16,2026-11-18,37000000,215394738,6.605,False,1989
+2980,Ghostbusters Collection,425909,Ghostbusters: Afterlife,2021-11-18,2026-11-18,75000000,204445747,7.289,False,2021
+2980,Ghostbusters Collection,967847,Ghostbusters: Frozen Empire,2024-03-20,2026-11-18,100000000,201967521,6.404,False,2024
+304,Ocean's Collection,161,Ocean's Eleven,2001-12-07,2026-11-18,85000000,450717150,7.468,True,2001
+304,Ocean's Collection,163,Ocean's Twelve,2004-12-09,2026-11-18,110000000,362744280,6.572,True,2004
+304,Ocean's Collection,298,Ocean's Thirteen,2007-06-05,2026-11-18,85000000,311312624,6.737,True,2007
+31562,The Bourne Collection,2501,The Bourne Identity,2002-06-14,2026-11-18,60000000,214034224,7.491,True,2002
+31562,The Bourne Collection,2502,The Bourne Supremacy,2004-07-23,2026-11-18,75000000,288500217,7.339,True,2004
+31562,The Bourne Collection,2503,The Bourne Ultimatum,2007-08-03,2026-11-18,70000000,442824138,7.45,True,2007
+31562,The Bourne Collection,49040,The Bourne Legacy,2012-08-08,2026-11-18,130000000,276600000,6.255,False,2012
+31562,The Bourne Collection,324668,Jason Bourne,2016-07-27,2026-11-18,120000000,415484914,6.389,False,2016
+328,Jurassic Park Collection,329,Jurassic Park,1993-06-11,2026-11-18,63000000,1058454230,7.977,True,1993
+328,Jurassic Park Collection,330,The Lost World: Jurassic Park,1997-05-23,2026-11-18,73000000,618638999,6.566,True,1997
+328,Jurassic Park Collection,331,Jurassic Park III,2001-07-18,2026-11-18,93000000,368780809,6.179,True,2001
+328,Jurassic Park Collection,135397,Jurassic World,2015-06-06,2026-11-18,150000000,1671537444,6.702,False,2015
+328,Jurassic Park Collection,351286,Jurassic World: Fallen Kingdom,2018-06-06,2026-11-18,170000000,1310469037,6.518,False,2018
+328,Jurassic Park Collection,507086,Jurassic World Dominion,2022-06-01,2026-11-18,658800000,1004004592,6.572,False,2022
+328,Jurassic Park Collection,1234821,Jurassic World Rebirth,2025-06-23,2026-11-18,180000000,869146189,6.237,False,2025
+422837,Blade Runner Collection,78,Blade Runner,1982-06-25,2026-11-18,28000000,41722424,7.937,True,1982
+422837,Blade Runner Collection,335984,Blade Runner 2049,2017-10-04,2026-11-18,150000000,259239658,7.615,False,2017
+468222,The Incredibles Collection,9806,The Incredibles,2004-10-27,2026-11-18,92000000,631442092,7.73,True,2004
+468222,The Incredibles Collection,260513,Incredibles 2,2018-06-14,2026-11-18,200000000,1243225667,7.451,False,2018
+528,The Terminator Collection,218,The Terminator,1984-10-26,2026-11-18,6400000,78371200,7.699,True,1984
+528,The Terminator Collection,280,Terminator 2: Judgment Day,1991-07-03,2026-11-18,102000000,517814175,8.178,True,1991
+528,The Terminator Collection,296,Terminator 3: Rise of the Machines,2003-07-02,2026-11-18,200000000,435000000,6.216,True,2003
+528,The Terminator Collection,534,Terminator Salvation,2009-05-20,2026-11-18,200000000,371353001,6.108,True,2009
+528,The Terminator Collection,87101,Terminator Genisys,2015-06-23,2026-11-18,155000000,440603537,5.965,False,2015
+528,The Terminator Collection,290859,Terminator: Dark Fate,2019-10-23,2026-11-18,185000000,261119292,6.412,False,2019
+8091,Alien Collection,348,Alien,1979-05-25,2026-11-18,11000000,104931801,8.2,True,1979
+8091,Alien Collection,679,Aliens,1986-07-18,2026-11-18,18500000,183316455,8.0,True,1986
+8091,Alien Collection,8077,Alien³,1992-05-22,2026-11-18,50000000,159773545,6.4,True,1992
+8091,Alien Collection,8078,Alien Resurrection,1997-11-12,2026-11-18,70000000,162000000,6.17,True,1997
+8354,Ice Age Collection,57800,Ice Age: Continental Drift,2012-06-27,2026-11-18,95000000,877244782,6.396,False,2012
+8354,Ice Age Collection,425,Ice Age,2002-03-14,2026-11-18,59000000,383257136,7.388,True,2002
+8354,Ice Age Collection,8355,Ice Age: Dawn of the Dinosaurs,2009-06-26,2026-11-18,90000000,886686817,6.783,True,2009
+8354,Ice Age Collection,950,Ice Age: The Meltdown,2006-03-29,2026-11-18,80000000,660998756,6.733,True,2006
+8354,Ice Age Collection,278154,Ice Age: Collision Course,2016-06-23,2026-11-18,105000000,408579038,6.118,False,2016
+8354,Ice Age Collection,774825,The Ice Age Adventures of Buck Wild,2022-01-28,2026-11-18,0,0,6.533,False,2022
+84,Indiana Jones Collection,85,Raiders of the Lost Ark,1981-06-12,2026-11-18,18000000,389925971,7.928,True,1981
+84,Indiana Jones Collection,87,Indiana Jones and the Temple of Doom,1984-05-23,2026-11-18,28000000,333107271,7.309,True,1984
+84,Indiana Jones Collection,89,Indiana Jones and the Last Crusade,1989-05-24,2026-11-18,48000000,474171806,7.9,True,1989
+84,Indiana Jones Collection,217,Indiana Jones and the Kingdom of the Crystal Skull,2008-05-21,2026-11-18,185000000,786636033,6.027,True,2008
+84,Indiana Jones Collection,335977,Indiana Jones and the Dial of Destiny,2023-06-25,2026-11-18,294700000,383963057,6.487,False,2023
+86311,The Avengers Collection,24428,The Avengers,2012-04-25,2026-11-18,220000000,1518815515,8.085,True,2012
+86311,The Avengers Collection,99861,Avengers: Age of Ultron,2015-04-22,2026-11-18,235000000,1405403694,7.278,True,2015
+86311,The Avengers Collection,299536,Avengers: Infinity War,2018-04-25,2026-11-18,300000000,2052415039,8.247,True,2018
+86311,The Avengers Collection,299534,Avengers: Endgame,2019-04-24,2026-11-18,356000000,2942649778,8.247,True,2019
+87359,Mission: Impossible Collection,954,Mission: Impossible,1996-05-22,2026-11-18,80000000,457696391,7.036,True,1996
+87359,Mission: Impossible Collection,955,Mission: Impossible II,2000-05-24,2026-11-18,125000000,546388108,6.14,True,2000
+87359,Mission: Impossible Collection,956,Mission: Impossible III,2006-04-25,2026-11-18,150000000,398479497,6.768,True,2006
+87359,Mission: Impossible Collection,56292,Mission: Impossible - Ghost Protocol,2011-12-07,2026-11-18,145000000,694713380,7.121,True,2011
+87359,Mission: Impossible Collection,177677,Mission: Impossible - Rogue Nation,2015-07-28,2026-11-18,150000000,682716636,7.228,True,2015
+87359,Mission: Impossible Collection,353081,Mission: Impossible - Fallout,2018-07-25,2026-11-18,178000000,824171374,7.454,False,2018
+87359,Mission: Impossible Collection,575265,Mission: Impossible - The Final Reckoning,2025-05-17,2026-11-18,400000000,598767057,7.168,False,2025
+87359,Mission: Impossible Collection,575264,Mission: Impossible - Dead Reckoning Part One,2023-07-08,2026-11-18,220000000,571125435,7.502,False,2023
+8945,Mad Max Collection,8810,Mad Max 2,1981-12-24,2026-11-18,2000000,24600832,7.394,False,1981
+8945,Mad Max Collection,9355,Mad Max Beyond Thunderdome,1985-06-29,2026-11-18,10000000,36230219,6.219,False,1985
+8945,Mad Max Collection,9659,Mad Max,1979-04-12,2026-11-18,350000,100000000,6.683,False,1979
+8945,Mad Max Collection,76341,Mad Max: Fury Road,2015-05-13,2026-11-18,150000000,378858340,7.642,True,2015
+8945,Mad Max Collection,786892,Furiosa: A Mad Max Saga,2024-05-22,2026-11-18,168000000,174287546,7.439,False,2024
+94032,The Lion King Collection,11430,The Lion King 1½,2004-10-28,2026-11-18,0,1465,6.59,False,2004
+94032,The Lion King Collection,9732,The Lion King II: Simba's Pride,1998-10-24,2026-11-18,0,0,6.938,False,1998
+94032,The Lion King Collection,8587,The Lion King,1994-06-15,2026-11-18,45000000,763455561,8.25,True,1994
+9743,The Hannibal Lecter Collection,274,The Silence of the Lambs,1991-02-14,2026-11-18,19000000,272742922,8.3,True,1991
+9743,The Hannibal Lecter Collection,9533,Red Dragon,2002-10-02,2026-11-18,78000000,209196298,7.052,False,2002
+9743,The Hannibal Lecter Collection,9740,Hannibal,2001-02-08,2026-11-18,87000000,351692268,6.779,False,2001

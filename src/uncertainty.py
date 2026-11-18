@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 
 import bundles
+from shortlist import MIN_BUNDLE_FILMS
 from analysis import CUTOFF_YEAR, POLICIES, classify, load_films
 
 OUT_DIR = Path("outputs")
@@ -27,13 +28,17 @@ def weighted_medians(values, weights):
 
 def bootstrap_medians(values, clusters, rng):
     """Median of many resamples. Whole clusters are drawn with replacement, so the 8 Harry Potter
-    films move together instead of counting as 8 independent results (ADR-008).
+    films move together instead of counting as 8 independent results (ADR-002).
     With every value its own cluster this is the ordinary bootstrap."""
     _, cluster_index = np.unique(clusters, return_inverse=True)
     n_clusters = cluster_index.max() + 1
     pieces = []
+    offsets = np.arange(BATCH)[:, None] * n_clusters
     for _ in range(N_RESAMPLES // BATCH):
-        counts = rng.multinomial(n_clusters, np.full(n_clusters, 1 / n_clusters), size=BATCH)
+        # Draw n_clusters clusters with replacement in each of BATCH resamples, then count how often each
+        # was drawn (one bincount over the whole batch; ~7x faster than rng.multinomial, same distribution).
+        drawn = rng.integers(0, n_clusters, size=(BATCH, n_clusters)) + offsets
+        counts = np.bincount(drawn.ravel(), minlength=BATCH * n_clusters).reshape(BATCH, n_clusters)
         pieces.append(weighted_medians(values, counts[:, cluster_index]))
     return np.concatenate(pieces)
 
@@ -57,14 +62,10 @@ def bootstrap_gap(franchise, standalone, rng, franchise_clusters=None):
     }
 
 
-def main():
-    pd.set_option("display.width", 250)
-    pd.set_option("display.max_columns", None)
-    OUT_DIR.mkdir(exist_ok=True)
-    rng = np.random.default_rng(SEED)
-    base = load_films()
-    whole = bundles.whole_bundle_table(bundles.build_parts(base))
-
+def gap_rows(base, whole, rng):
+    """Every comparison in the run: 3 policies x 2 windows x 2 ways of resampling films,
+    plus whole bundle against standalone in both windows (14 in all)."""
+    whole = whole.loc[whole["films_released"] >= MIN_BUNDLE_FILMS]     # the same bundles the shortlist ranks
     rows = []
     for policy in POLICIES:
         classified = classify(base, policy)
@@ -90,8 +91,16 @@ def main():
         rows.append({"singles_as": "standalone", "window": window_name, "unit": "whole bundle",
                      "resampling": "each bundle independent",
                      **bootstrap_gap(b["whole_bundle_return"], standalone, rng)})
+    return pd.DataFrame(rows)
 
-    result = pd.DataFrame(rows)
+
+def main():
+    pd.set_option("display.width", 250)
+    pd.set_option("display.max_columns", None)
+    OUT_DIR.mkdir(exist_ok=True)
+    base = load_films()
+    whole = bundles.whole_bundle_table(bundles.build_parts(base))
+    result = gap_rows(base, whole, np.random.default_rng(SEED))
     print(result)
     result.to_csv(OUT_DIR / "uncertainty.csv", index=False)
 

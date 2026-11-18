@@ -7,7 +7,7 @@ import bundles
 from analysis import CUTOFF_YEAR, classify, load_films
 
 OUT_DIR = Path("outputs")
-MIN_BUNDLE_FILMS = 3      # a bundle must have at least this many released films to be ranked (ADR-009)
+MIN_BUNDLE_FILMS = 3      # a bundle must have at least this many released films to be ranked (ADR-005)
 
 
 def add_score(table, columns):
@@ -48,7 +48,7 @@ def standalone_table(films, parts=None):
 
 
 def ranking_alternatives(whole, modern_standalones):
-    """What the shortlist would be under the rejected ranking rules (ADR-004)."""
+    """What the shortlist would be under the rejected ranking rules (ADR-003)."""
     b = bundle_table(whole, CUTOFF_YEAR)
     s = modern_standalones
     rows = {
@@ -90,7 +90,7 @@ def main():
     pd.set_option("display.width", 250)
     pd.set_option("display.max_columns", None)
     OUT_DIR.mkdir(exist_ok=True)
-    films = classify(load_films(), "standalone")                  # decision: ADR-001
+    films = classify(load_films(), "standalone")                  # decision: ADR-002
     modern = films.loc[films["release_year"] >= CUTOFF_YEAR]      # decision: ADR-002
     parts = bundles.build_parts(load_films())
     whole = bundles.whole_bundle_table(parts)

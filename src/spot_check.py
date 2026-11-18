@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from dotenv import load_dotenv
 
-from analysis import classify, load_films
+from analysis import CUTOFF_YEAR, classify, load_films
 from fetch import BASE_URL, ENDPOINTS, TIMEOUT, make_session
 
 OUT_DIR = Path("outputs")
@@ -22,14 +22,14 @@ def pick_sample(films):
     random_slice = films.sample(4, random_state=SEED)
     by_return = films.dropna(subset=["return_multiple"]).sort_values("return_multiple")
     extremes = pd.concat([by_return.head(2), by_return.tail(2)])
-    singles = classified.loc[classified["collection_films_in_list"] == 1].head(2)   # reclassified by ADR-001
-    days_from_cutoff = (pd.to_datetime(films["release_date"]) - pd.Timestamp("2000-01-01")).abs()
-    boundary = films.loc[days_from_cutoff.nsmallest(2).index]                       # closest to the 2000 split
+    singles = classified.loc[classified["collection_films_in_list"] == 1].head(2)   # reclassified by ADR-002
+    days_from_cutoff = (pd.to_datetime(films["release_date"]) - pd.Timestamp(f"{CUTOFF_YEAR}-01-01")).abs()
+    boundary = films.loc[days_from_cutoff.nsmallest(2).index]                       # closest to the cut-off year
     sample = pd.concat([
         random_slice.assign(slice="random"),
         extremes.assign(slice="extreme return"),
         singles.assign(slice="reclassified single"),
-        boundary.assign(slice="2000 boundary"),
+        boundary.assign(slice=f"{CUTOFF_YEAR} boundary"),
     ])
     return sample.drop_duplicates("movie_id")
 

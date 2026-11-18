@@ -1,7 +1,7 @@
 import json
 import os
 import time
-from datetime import date, datetime, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -96,11 +96,30 @@ def fetch_whole_bundles(session, api_key):
         made += 0 if from_cache else 1
         parts = (record["payload"] or {}).get("parts", [])
         for part in parts:
-            released = part.get("release_date") and part["release_date"] <= date.today().isoformat()
+            # released by the day the list was fetched: the same rule bundles.py values on
+            released = part.get("release_date") and part["release_date"] <= record["fetched_at"][:10]
             if part["id"] not in on_list and released:
                 _, from_cache = fetch_one(session, api_key, part["id"], "collection_parts")
                 made += 0 if from_cache else 1
     return made
+
+
+def write_manifest():
+    """One row per saved answer the analysis uses: details and credits for every usable id, plus
+    every id lookup, franchise list and figures for franchise films not on the list."""
+    ids = pd.read_csv("data/ids_classified.csv", dtype=str, keep_default_na=False)
+    usable = ids.loc[ids["status"] == "usable", "tmdb_id"].tolist()
+    paths = [RAW_DIR / endpoint / f"{movie_id}.json" for movie_id in usable for endpoint in ("details", "credits")]
+    for endpoint in ("find", "collection", "collection_parts"):
+        paths += sorted((RAW_DIR / endpoint).glob("*.json"))
+    rows = []
+    for path in paths:
+        record = json.loads(path.read_text(encoding="utf-8"))
+        rows.append({key: record[key] for key in ("movie_id", "endpoint", "status_code", "fetched_at")})
+    manifest = pd.DataFrame(rows, columns=["movie_id", "endpoint", "status_code", "fetched_at"])
+    manifest.to_csv(RAW_DIR / "manifest.csv", index=False)
+    assert (manifest["endpoint"].isin(["details", "credits"])).sum() == 2 * len(usable), "a fetch went missing"
+    return manifest
 
 
 def main():
@@ -112,26 +131,11 @@ def main():
     ids = pd.read_csv("data/ids_classified.csv", dtype=str, keep_default_na=False)
     usable = ids.loc[ids["status"] == "usable", "tmdb_id"].tolist()
     assert len(usable) > 0, "no usable ids to fetch"
-    manifest = []
-
     for movie_id in usable:
         for endpoint in ("details", "credits"):
-            record, from_cache = fetch_one(session, api_key, movie_id, endpoint)
+            _, from_cache = fetch_one(session, api_key, movie_id, endpoint)
             requests_made += 0 if from_cache else 1
-            manifest.append({
-                "movie_id": movie_id,
-                "endpoint": endpoint,
-                "status_code": record["status_code"],
-                "fetched_at": record["fetched_at"],
-            })
-
-    manifest = pd.DataFrame(manifest)
-    manifest.to_csv(RAW_DIR / "manifest.csv", index=False)
+    manifest = write_manifest()
 
     print("live requests made this run:", requests_made)
     print(manifest.groupby("endpoint")["status_code"].value_counts())
-    assert len(manifest) == 2 * len(usable), "a fetch went missing"
-
-
-if __name__ == "__main__":
-    main()

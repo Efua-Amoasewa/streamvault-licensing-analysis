@@ -1,13 +1,13 @@
 """Walk-away price ceilings: how much of the budget each shortlisted title is worth
-RELATIVE to everything else on the shortlist (ADR-010).
+RELATIVE to everything else on the shortlist (ADR-003).
 
 There are no licence prices in the data, so this cannot say what a title costs. It says
 what share of the money each title's box-office evidence can justify, so a negotiator knows
 when a quoted price is out of line with the rest of the shortlist.
 
 Value unit = one typical standalone film (the median standalone return, 2000 onward).
-- A bundle is all-or-none, so it is valued conservatively: number of films x its WEAKEST
-  film's return, in standalone units. You pay for every film, including the worst.
+- A bundle is all-or-none, so it is valued conservatively: number of films with figures x its
+  WEAKEST film's return, in standalone units. A film with no figures adds no value. You pay for every film, including the worst.
 - A standalone is bought on its own: its own return, in standalone units.
 """
 from pathlib import Path
@@ -33,9 +33,9 @@ def ceiling_table(budget_m=BUDGET_M):
     b = shortlist.bundle_table(whole, CUTOFF_YEAR).head(N_BUNDLES)
     s = shortlist.standalone_table(modern, parts).head(N_STANDALONES)
     rows = pd.concat([
-        pd.DataFrame({"title": b.index, "kind": "bundle", "films": b["films_released"].to_numpy(),
+        pd.DataFrame({"title": b.index, "kind": "bundle", "films": b["films_with_money"].to_numpy(),
                       "driving_return": b["whole_weakest_film_return"].to_numpy(),
-                      "value_units": (b["films_released"] * b["whole_weakest_film_return"] / unit).to_numpy()}),
+                      "value_units": (b["films_with_money"] * b["whole_weakest_film_return"] / unit).to_numpy()}),
         pd.DataFrame({"title": s["title"].to_numpy(), "kind": "standalone", "films": 1,
                       "driving_return": s["return_multiple"].to_numpy(),
                       "value_units": (s["return_multiple"] / unit).to_numpy()}),

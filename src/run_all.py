@@ -72,6 +72,7 @@ def changes_since_last_run(films):
 def fetch_bundles():
     load_dotenv(".env")
     fetch.fetch_whole_bundles(fetch.make_session(), os.environ["TMDB_API_KEY"])
+    fetch.write_manifest()
 
 
 def main():
@@ -128,12 +129,12 @@ def main():
     top_bundles = shortlist.bundle_table(whole, CUTOFF_YEAR).head(3)
     top_standalones = shortlist.standalone_table(modern, parts).head(5)
     price, unit = ceilings.ceiling_table()
-    fetched = pd.to_datetime(films["fetched_at"], format="ISO8601")
+    fetched = pd.to_datetime(manifest["fetched_at"], format="ISO8601", errors="coerce").dropna()
 
     report = "\n".join([
         "# Run report", "",
         f"Run at: {datetime.now(timezone.utc).isoformat(timespec='seconds')}",
-        f"Data as of: {fetched.min().date()} to {fetched.max().date()} (when each film was fetched)",
+        f"Data as of: {fetched.min().date()} to {fetched.max().date()} (when each saved answer was fetched: films, id lookups, franchise lists and figures)",
         f"Mode: {'offline, saved snapshot' if args.offline else 'online, new ids fetched'}", "",
         "## Where every id went", "", markdown_table(reconciliation(ids, manifest, films)), "",
         "## Data quality gate", "", markdown_table(checks.set_index("check")), "",

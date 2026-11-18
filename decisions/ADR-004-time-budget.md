@@ -1,4 +1,4 @@
-# ADR-011: The time budget is 10 seconds for the whole offline run at 500 titles
+# ADR-004: The time budget is 10 seconds for the whole offline run at 500 titles
 
 - **Status:** Accepted
 - **Date:** 2026-11-18
@@ -28,10 +28,10 @@ From typing `python src/run_all.py --offline` to a finished report, under 10 sec
 
 ## Consequences
 
-- **What this buys:** A claim that matches what Adjoa will see: about 7.5 seconds at 500 titles on this laptop (see `timing_report.md`).
-- **What this costs:** 10 seconds feels slow in a meeting; it is about the limit.
+- **What this buys:** A claim that matches what Adjoa will see: about 6 seconds at 500 titles on this laptop (median 6.0 s, worst of three 6.1 s; 2.9 s at 112 titles; see `timing_report.md`). The measurement covers everything the run does, including all 14 uncertainty comparisons with 10,000 reshuffles each. Timing all 14, rather than 2 as an earlier version did, showed the reshuffling was the slow step (2.9 s in memory at 500 titles, a worst end-to-end run of 13.5 s). Drawing each reshuffle by counting random picks instead of a multinomial draw cut it to 1.2 s with the same results to within a percentage point.
+- **What this costs:** 10 seconds feels slow in a meeting; it is about the limit, and 6 seconds leaves some headroom, not a lot.
 - **What it costs the client if I am wrong:** On a slower laptop the run may take 15 seconds. It still works; it is just a pause.
-- **What would make me revisit this:** Lists of 5,000 titles. In memory the analysis then takes about 5 seconds, almost all of it the uncertainty reshuffles; reducing them from 10,000 to 2,000 would cut that by about four-fifths.
+- **What would make me revisit this:** Lists of 5,000 titles. In memory the analysis then takes about 37 seconds, almost all of it the uncertainty reshuffles, so the budget would not hold. Reducing them from 10,000 to 2,000 (one setting, `N_RESAMPLES` in `src/uncertainty.py`) would cut that by about four-fifths, at the cost of shares that wobble by a couple of percentage points between runs.
 
 ## What this survives
 

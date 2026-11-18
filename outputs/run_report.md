@@ -1,7 +1,7 @@
 # Run report
 
-Run at: 2026-11-18T13:05:34+00:00
-Data as of: 2026-11-17 to 2026-11-17 (when each film was fetched)
+Run at: 2026-11-18T16:13:34+00:00
+Data as of: 2026-11-17 to 2026-11-18 (when each saved answer was fetched: films, id lookups, franchise lists and figures)
 Mode: offline, saved snapshot
 
 ## Where every id went
@@ -24,7 +24,9 @@ Mode: offline, saved snapshot
 | money is never negative | 0 | pass | impossible budget or revenue |
 | films fetched match films analysed | 0 | pass | a film was lost between fetching and analysis |
 | every franchise film is found in its whole bundle | 0 | pass | a bundle would be valued without a film we know is in it; fetch the bundle lists (online run) |
+| every released franchise film has a figures record | 0 | pass | a bundle would be valued only on the films that happen to be on the list; fetch the bundle figures (online run) |
 | budget and revenue both entered | 0 | pass | zero means 'nobody entered a figure'; excluded from return metrics, still counted as titles |
+| franchise films not on the list have budget and revenue | 3 | WARN | left out of their bundle's value; the bundle is valued on its films with figures |
 | every film has cast listed | 0 | pass | missing from the lead-actor read |
 | every film has a director listed | 0 | pass | missing from the director read |
 | every film is marked Released | 0 | pass | an unreleased film has no real revenue |
@@ -51,10 +53,10 @@ Per film, resampling whole bundles so a series' films move together; and per who
 
 | window | unit | franchise_units | standalone_films | franchise_median | standalone_median | gap_low_95 | gap_high_95 | share_franchise_ahead |
 |---|---|---|---|---|---|---|---|---|
-| all years | film | 87 | 25 | 5.53 | 5.0 | -6.24 | 3.16 | 0.78 |
-| 2000 onward | film | 59 | 12 | 5.05 | 4.49 | -0.68 | 2.73 | 0.8 |
-| all years | whole bundle | 23 | 25 | 4.49 | 5.0 | -6.77 | 2.38 | 0.4 |
-| 2000 onward | whole bundle | 12 | 12 | 5.02 | 4.49 | -0.95 | 2.83 | 0.74 |
+| all years | film | 87 | 25 | 5.53 | 5.0 | -6.18 | 3.18 | 0.79 |
+| 2000 onward | film | 59 | 12 | 5.05 | 4.49 | -0.69 | 2.68 | 0.8 |
+| all years | whole bundle | 22 | 25 | 4.35 | 5.0 | -7.05 | 2.34 | 0.36 |
+| 2000 onward | whole bundle | 11 | 12 | 4.49 | 4.49 | -1.04 | 3.16 | 0.65 |
 
 ## Bundles on the list that are not complete (valued whole, including the films not on the list)
 
@@ -99,10 +101,10 @@ Standalone films: Inception; Interstellar; Spirited Away; The Incredibles; Monst
 | step | seconds |
 |---|---|
 | classify ids | 0.01 |
-| flatten | 0.49 |
-| whole bundles | 0.12 |
-| shortlists | 0.15 |
-| talent | 0.07 |
-| uncertainty | 0.78 |
-| price ceilings | 0.06 |
-| whole run (wall clock) | 1.98 |
+| flatten | 0.41 |
+| whole bundles | 0.09 |
+| shortlists | 0.09 |
+| talent | 0.06 |
+| uncertainty | 0.27 |
+| price ceilings | 0.05 |
+| whole run (wall clock) | 1.17 |
