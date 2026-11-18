@@ -26,7 +26,7 @@ N_BUNDLES, N_STANDALONES = 3, 5
 def ceiling_table(budget_m=BUDGET_M):
     films = classify(load_films(), "standalone")
     modern = films.loc[films["release_year"] >= CUTOFF_YEAR]
-    parts = bundles.build_parts(load_films())
+    parts = bundles.load_parts()
     whole = bundles.whole_bundle_table(parts)
     unit = modern.loc[modern["group"] == "standalone", "return_multiple"].median()
 

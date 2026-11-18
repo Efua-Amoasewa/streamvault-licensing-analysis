@@ -10,7 +10,7 @@ The brief says Adjoa will rerun this on her own laptop, "sometimes live in a mee
 
 ## Decision
 
-From typing `python src/run_all.py --offline` to a finished report, under 10 seconds at about 500 titles, measured end to end: a fresh Python start, reading every saved file from disk, flattening, the data check, the analysis and the report. Fetching new films is outside the budget: it is done once, before the meeting (about two minutes for 500 new films at the polite pace).
+I set the budget at under 10 seconds for the whole offline run at about 500 titles, timed from typing `python src/run_all.py --offline` to a finished report in a fresh process. Fetching new films is outside the budget, because it is done once before the meeting (about two minutes for 500 new films at the polite pace).
 
 ## Alternatives considered
 
@@ -28,11 +28,11 @@ From typing `python src/run_all.py --offline` to a finished report, under 10 sec
 
 ## Consequences
 
-- **What this buys:** A claim that matches what Adjoa will see: about 6 seconds at 500 titles on this laptop (median 6.0 s, worst of three 6.1 s; 2.9 s at 112 titles; see `timing_report.md`). The measurement covers everything the run does, including all 14 uncertainty comparisons with 10,000 reshuffles each. Timing all 14, rather than 2 as an earlier version did, showed the reshuffling was the slow step (2.9 s in memory at 500 titles, a worst end-to-end run of 13.5 s). Drawing each reshuffle by counting random picks instead of a multinomial draw cut it to 1.2 s with the same results to within a percentage point.
-- **What this costs:** 10 seconds feels slow in a meeting; it is about the limit, and 6 seconds leaves some headroom, not a lot.
-- **What it costs the client if I am wrong:** On a slower laptop the run may take 15 seconds. It still works; it is just a pause.
-- **What would make me revisit this:** Lists of 5,000 titles. In memory the analysis then takes about 37 seconds, almost all of it the uncertainty reshuffles, so the budget would not hold. Reducing them from 10,000 to 2,000 (one setting, `N_RESAMPLES` in `src/uncertainty.py`) would cut that by about four-fifths, at the cost of shares that wobble by a couple of percentage points between runs.
+- **What this buys:** A claim that matches what Adjoa will see. At 500 titles a repeat run takes about 6 seconds (worst of ten about 8); at 112 titles about 3 (see `timing_report.md` for median, p95 and worst). The measurement covers everything the run does, including all 14 uncertainty comparisons with 10,000 reshuffles each. Timing all 14, rather than 2 as an earlier version did, showed the reshuffling was the slow step; counting random picks instead of a multinomial draw made it 2.4 times faster with the same results to within a percentage point.
+- **What this costs:** The first run after new data is fetched, or after a restart, is much slower (27 seconds at 500 titles, 8 at 112), because the laptop reads and virus-scans about a thousand freshly written files. The budget is judged on repeat runs, so Adjoa should do one practice run before the meeting.
+- **What it costs the client if I am wrong:** If the meeting run is the cold one, or the laptop is slower, Kwame waits up to half a minute. The run still finishes and the answer is the same.
+- **What would make me revisit this:** Lists of 5,000 titles, where the reshuffles alone take about 21 seconds in memory. Lowering `N_RESAMPLES` in `src/uncertainty.py` from 10,000 to 2,000 would cut that by about four-fifths, at the cost of shares that wobble by a couple of percentage points. A slow cold run would justify saving the flattened tables as one file per fetch so later runs skip the thousand small files.
 
 ## What this survives
 
-`python src/timing.py` rebuilds a 500-film copy of the project and re-measures, so Adjoa can check the budget on her own laptop.
+`python src/timing.py` rebuilds 112- and 500-film copies of the project and re-measures cold and warm runs, so Adjoa can check the budget on her own laptop.

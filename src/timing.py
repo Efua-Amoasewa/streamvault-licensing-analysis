@@ -27,7 +27,7 @@ from analysis import CUTOFF_YEAR, classify, kpi_table, load_films
 SIZES = [112, 500, 5000]          # real list, next year's list, a stress test
 END_TO_END_SIZES = [112, 500]     # sizes for the full command (5,000 would mean 10,000+ files)
 RUNS = 5                          # timed runs per size (after one warm-up run)
-E2E_RUNS = 3
+E2E_RUNS = 10                     # enough runs for a meaningful p95
 TARGET_SECONDS = 10.0             # ADR-004: whole offline run, from typing the command to the report
 ID_OFFSET = 1_000_000             # keeps ids unique when the real list is copied
 ROOT = Path(".").resolve()
@@ -96,8 +96,8 @@ def time_end_to_end(n):
     with tempfile.TemporaryDirectory() as tmp:
         dest = Path(tmp)
         films = build_project(n, dest)
-        seconds = []
-        for i in range(E2E_RUNS + 1):                       # first run is a warm-up, not counted
+        seconds, cold = [], None
+        for i in range(E2E_RUNS + 1):                       # first run reads freshly written files: reported apart
             start = time.perf_counter()
             done = subprocess.run([sys.executable, "src/run_all.py", "--offline"], cwd=dest,
                                   capture_output=True, text=True)
@@ -105,7 +105,9 @@ def time_end_to_end(n):
             assert done.returncode == 0, done.stdout[-2000:] + done.stderr[-2000:]
             if i:
                 seconds.append(elapsed)
-        return films, seconds
+            else:
+                cold = elapsed
+        return films, seconds, cold
 
 
 # ---------- per stage, in memory ----------
@@ -162,6 +164,29 @@ def classify_with_apply(films):
     return films.assign(group=films.apply(label, axis=1))
 
 
+def bootstrap_medians_multinomial(values, clusters, rng):
+    """The earlier way of drawing reshuffles, kept only to measure against: one multinomial draw per batch."""
+    _, cluster_index = np.unique(clusters, return_inverse=True)
+    n_clusters = cluster_index.max() + 1
+    pieces = []
+    for _ in range(uncertainty.N_RESAMPLES // uncertainty.BATCH):
+        counts = rng.multinomial(n_clusters, np.full(n_clusters, 1 / n_clusters), size=uncertainty.BATCH)
+        pieces.append(uncertainty.weighted_medians(values, counts[:, cluster_index]))
+    return np.concatenate(pieces)
+
+
+def time_uncertainty(films, parts, drawer):
+    """Seconds for all 14 uncertainty comparisons with the given way of drawing reshuffles."""
+    whole = bundles.whole_bundle_table(parts)
+    original, uncertainty.bootstrap_medians = uncertainty.bootstrap_medians, drawer
+    try:
+        start = time.perf_counter()
+        uncertainty.gap_rows(films, whole, np.random.default_rng(uncertainty.SEED))
+        return time.perf_counter() - start
+    finally:
+        uncertainty.bootstrap_medians = original
+
+
 def main():
     films = load_films()
     directors = pd.read_csv("data/processed/directors.csv")
@@ -171,8 +196,12 @@ def main():
 
     e2e = []
     for n in END_TO_END_SIZES:
-        count, secs = time_end_to_end(n)
-        e2e.append({"scenario": f"{count} films", "runs": len(secs), "median": round(float(np.median(secs)), 2),
+        count, secs, cold = time_end_to_end(n)
+        e2e.append({"scenario": f"{count} films, first run on freshly copied files (cold)", "runs": 1,
+                    "median": round(cold, 2), "p95": "–", "worst": round(cold, 2),
+                    "target_met": "yes" if cold <= TARGET_SECONDS else "NO"})
+        e2e.append({"scenario": f"{count} films, repeat runs (warm)", "runs": len(secs),
+                    "median": round(float(np.median(secs)), 2), "p95": round(float(np.percentile(secs, 95)), 2),
                     "worst": round(max(secs), 2), "target_met": "yes" if max(secs) <= TARGET_SECONDS else "NO"})
         print(e2e[-1])
 
@@ -190,40 +219,55 @@ def main():
     big, _, _, _ = scale(films, directors, leads, parts, 5000)
     start = time.perf_counter(); classify_with_apply(big); slow = time.perf_counter() - start
     start = time.perf_counter(); classify(big, "standalone"); fast = time.perf_counter() - start
+    f500, _, _, p500 = scale(films, directors, leads, parts, 500)
+    unc_before = time_uncertainty(f500, p500, bootstrap_medians_multinomial)
+    unc_after = time_uncertainty(f500, p500, uncertainty.bootstrap_medians)
 
     lines = [
         "# Run time report", "",
-        "## Target (ADR-004)", "",
+        "## Target", "",
         f"The whole offline run, from typing the command to a finished report, takes under {TARGET_SECONDS:.0f} seconds "
-        "on Adjoa's laptop at next year's list size (about 500 films). That is short enough to rerun live in a meeting.", "",
+        "on Adjoa's laptop at next year's list size (about 500 films), short enough to rerun live in a meeting (ADR-004).", "",
         "## Method", "",
-        f"- Hardware: {platform.platform()}, {platform.machine()}, Python {sys.version.split()[0]}, pandas {pd.__version__}",
-        "- End to end: `python src/run_all.py --offline` in a throw-away copy of the project, a fresh Python process each time, "
-        f"reading every saved file from disk (start-up, imports, reading, flattening, checks, analysis, report). "
-        f"{E2E_RUNS} timed runs after one discarded warm-up. Network fetching is excluded: it happens only for new ids "
-        "(about two minutes for 500 new films at the polite pace), and can be done before the meeting.",
-        "- Per stage: each analysis step on data already in memory, 5 runs after a warm-up, up to 5,000 films.",
-        "- Larger sizes copy the real films (and their bundles) with new ids, so the shape of the data is realistic.",
-        "- Reproduce: `python src/timing.py`", "",
-        "## End to end", "",
-        "| Scenario | Runs | Median (s) | Worst (s) | Target met? |",
-        "|---|---|---|---|---|",
-        *[f"| {r['scenario']} | {r['runs']} | {r['median']} | {r['worst']} | {r['target_met']} |" for r in e2e], "",
-        "## Per stage, in memory (median seconds)", "",
-        "| Stage | " + " | ".join(stage_table.columns) + " |",
+        f"- **Hardware / container spec:** {platform.platform()}, {platform.machine()}, Python {sys.version.split()[0]}, "
+        f"pandas {pd.__version__}, numpy {np.__version__}; no container.",
+        "- **What was timed, from which event to which event:** from starting `python src/run_all.py --offline` in a fresh "
+        "process to that process exiting with the report written: start-up, imports, reading every saved file from disk, "
+        "flattening, the data checks, the analysis (including all 14 uncertainty comparisons) and the report. The run uses a "
+        "throw-away copy of the project; larger sizes copy the real films and their franchises with new ids, so the data has a "
+        "realistic shape. Network fetching is excluded: it happens only for new ids (about two minutes for 500 new films at "
+        "the polite pace) and is done before the meeting. A second measurement times each analysis step on data already in "
+        "memory, up to 5,000 films, to show which step grows with list size.",
+        f"- **Runs, warm or cold, and which figure is reported:** per size, one cold run straight after the project copy is "
+        f"written (the system has not yet read or scanned the files), reported on its own, then {E2E_RUNS} warm runs, each a "
+        f"fresh process; median, 95th percentile and worst are reported, and the target is judged on the warm worst. "
+        f"Per-step timings: {RUNS} runs after a warm-up, median reported.",
+        "- **How to reproduce:** `python src/timing.py` (rewrites this report).", "",
+        "## Results", "",
+        "| Scenario | Runs | Median | p95 | Worst | Target met? |",
+        "|---|---|---|---|---|---|",
+        *[f"| {r['scenario']} | {r['runs']} | {r['median']} s | {r['p95']}{'' if r['p95'] == '–' else ' s'} | {r['worst']} s | {r['target_met']} |"
+          for r in e2e], "",
+        "Each analysis step on data already in memory (median seconds):", "",
+        "| Step | " + " | ".join(stage_table.columns) + " |",
         "|---" * (len(stage_table.columns) + 1) + "|",
         *[f"| {name} | " + " | ".join(str(v) for v in row) + " |"
           for name, row in zip(stage_table.index, stage_table.to_numpy())],
-        "| **all stages** | " + " | ".join(str(totals_by_size[n]) for n in SIZES) + " |", "",
+        "| **all steps** | " + " | ".join(str(totals_by_size[n]) for n in SIZES) + " |", "",
         "## Before / after", "",
-        "| Stage | Before (row by row) | After (whole column) | Change |",
+        "| Query / stage | Before | After | Change |",
         "|---|---|---|---|",
-        f"| classify, 5000 films | {slow:.4f}s | {fast:.4f}s | {slow / fast:.0f}x faster |", "",
+        f"| Group films (5,000 films): one call per row → one whole-column rule | {slow:.4f} s | {fast:.4f} s | {slow / fast:.0f}x faster |",
+        f"| All 14 uncertainty comparisons (500 films): multinomial draw → counting random picks | {unc_before:.2f} s | {unc_after:.2f} s | {unc_before / unc_after:.1f}x faster |", "",
         "## Caveats", "",
         "- Timings are from one laptop. Another machine will differ; the shape (how time grows with size) should hold.",
-        "- The very first run after a restart can be a few seconds slower while the system loads Python and the files from disk.",
+        "- The cold run is dominated by reading about a thousand freshly written files, which Windows also scans for viruses. "
+        "Adjoa meets it at most once, the first time she runs after fetching new data or restarting the laptop; a practice "
+        "run before the meeting avoids it. The run reads each saved file once (later steps read the flattened tables).",
         "- Copied data repeats the same films, so it tests speed and memory, not new findings.",
-        "- The uncertainty stage runs all 14 comparisons the report prints, each with 10,000 resamples of both groups, drawn in batches of 1,000 so memory stays small at any list size.",
+        "- At 5,000 films the uncertainty step alone takes well over 10 seconds; the budget is for about 500 titles. "
+        "Lowering `N_RESAMPLES` in `src/uncertainty.py` from 10,000 to 2,000 would cut it by about four-fifths.",
+        "- The two ways of drawing reshuffles give the same results to within one percentage point; they differ only in the random sequence.",
     ]
     Path("timing_report.md").write_text("\n".join(lines), encoding="utf-8")
     print("\nwrote timing_report.md")

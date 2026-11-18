@@ -1,4 +1,4 @@
-# ADR-001: Account for every id, save every answer once, treat zero money as missing, and stop on impossible data
+# ADR-001: Account for every id, save every answer once, and stop the run on impossible data
 
 - **Status:** Accepted
 - **Date:** 2026-11-18
@@ -6,35 +6,51 @@
 
 ## Context
 
-The candidate list has defects (F-05), the database is a shared service for polite use only, and it stores 0 when nobody entered a budget or revenue. Kwame needs a full account of the 127 lines, and Adjoa needs to repeat the run without calling the database again and without a bad record quietly changing the answer.
+The candidate list has defects (F-05): a blank line, text placeholders, repeats, an id from another film database and ids the database does not know. The database is a shared service for polite use only, it stores 0 when nobody entered a budget or revenue, and its franchise lists include films not yet released. Kwame needs every one of the 127 lines accounted for, and Adjoa needs to repeat the run in a meeting without the internet and without a bad record quietly changing the answer.
 
-## Decision 1: Every line gets a status, and every answer is saved once
+## Decision
 
-Read every line as text and give it one status: usable, repeat, blank, unmatched other-database id, or invalid. An id from another film database ("tt...") is looked up through the database's own matching service and replaced by the id it matches; if that film is already on the list it is a repeat (this is what happened: it is The Dark Knight). Ids written "0155" or "155.0" count as "155". The first copy of a repeated id is kept; which copy does not matter, because every answer for the same id is identical.
+I give every line one status (usable, repeat, blank, unmatched other-database id or invalid), request each usable id once and save every answer with its fetch time, so later runs read from disk. Zero money counts as missing, a franchise film counts as released only if it was out on the day its franchise list was fetched, and a check before any result stops the run on impossible data (a repeated film, the wrong film returned, a bad date, negative money, a film lost on the way, a franchise film missing from its franchise, or a released franchise film with no figures saved).
 
-Request each usable id once, wait a tenth of a second between requests, retry only temporary errors (honouring the database's "wait" instruction), never retry "not found", and save each raw answer to disk with the time it was fetched. Every saved answer is listed in `data/raw/manifest.csv`.
+## Alternatives considered
 
-**Alternatives rejected**
+### Alternative A: Let the standard file reader drop bad lines
 
-- **Let the standard file reader drop bad lines.** Fewer lines of code, but it silently turns 127 lines into 126 and hides the "N/A". Kwame would get a total that does not reconcile with the list he gave.
-- **Fetch again on every run.** Always fresh, but slower, needs the internet in the meeting, and results can change between two runs of the same list.
+- **How it would work:** Read the file with the usual reader and drop empty values.
+- **Why it is attractive:** Fewer lines of code.
+- **Why rejected:** It silently turns 127 lines into 126 and hides the "N/A", so Kwame's total would not reconcile with the list he gave. The other-database id would be dropped instead of being recognised as a third copy of The Dark Knight.
 
-## Decision 2: Zero money means "missing"; impossible data stops the run
+### Alternative B: Fetch again on every run
 
-A film with zero budget or revenue is still counted as a title but left out of every return calculation. A set of checks runs before any result is produced. Impossible problems stop the run with a message saying what to fix: a repeated film, the wrong film returned, an implausible date, negative money, a film lost between fetching and analysis, a franchise film on the list missing from its franchise, or a released franchise film with no figures saved. Softer problems (missing money, cast or director, an unreleased film) are reported as warnings.
+- **How it would work:** Call the database every time the analysis runs.
+- **Why it is attractive:** Always the freshest figures.
+- **Why rejected:** Needs the internet in the meeting, takes about two minutes at 500 titles at the polite pace, and the answer can change between two runs of the same list.
 
-**Alternatives rejected**
+### Alternative C: Drop films with zero money, or fill in an estimate
 
-- **Drop films without money.** Simple, but the film's title, cast and franchise are still real, and dropping it hides it from the counts.
-- **Replace zero with an estimate** such as the average budget. Keeps every film in the maths, but invents data that then looks real.
+- **How it would work:** Remove any film without a budget or revenue, or replace the zero with an average.
+- **Why it is attractive:** Keeps the maths simple, or keeps every film in it.
+- **Why rejected:** Dropping hides a real title from the counts; an estimate invents data that then looks real. Today no film on the list is affected, so neither choice would change the recommendation, but a 500-title list probably will have some.
+
+### Alternative D: Judge "released" against today's date
+
+- **How it would work:** Count a franchise film if its release date is before the day the analysis runs.
+- **Why it is attractive:** Picks up new releases automatically.
+- **Why rejected:** The saved franchise lists include Avengers: Doomsday (16 December 2026). From that day an offline rerun would count it with no figures, and Avengers would quietly become "incomplete" with nothing in the data changed.
+
+### Alternative E: Keep the last copy of a repeated id
+
+- **How it would work:** Keep the final occurrence instead of the first.
+- **Why it is attractive:** None in particular; it is the other obvious default.
+- **Why rejected:** Copies are the same film with identical answers, so the result is identical. I keep the first because it is simpler to explain.
 
 ## Consequences
 
-- **What this buys:** A full reconciliation (127 lines → 124 valid-looking → 117 unique → 112 films → 112 with usable figures), no infinite returns, a first run of 234 film requests plus 1 id lookup and 71 whole-franchise requests, a second run of 0, and an offline mode for meetings.
-- **What this costs:** The saved data goes out of date; each answer carries its fetch date and the run report prints the range. The gate's thresholds are my judgement.
-- **What it costs the client if I am wrong:** Amounts edited in the database after 17–18 November are not reflected. A film whose zero is a real zero would be wrongly excluded, which does not happen for released films.
-- **What would make me revisit this:** A need for fresher figures (delete `data/raw` and fetch again), or several warnings in a row on a new list.
+- **What this buys:** A full reconciliation (127 lines → 124 valid-looking → 117 unique → 112 films → 112 with usable figures), a first run of 234 film requests plus 1 id lookup and 71 franchise requests, a second run of 0, an offline mode for meetings, and results that do not change unless the saved data does.
+- **What this costs:** The saved data goes out of date; each answer carries its fetch date and the run report prints the range. New releases enter only when the franchise lists are fetched again.
+- **What it costs the client if I am wrong:** Figures edited in the database after 17–18 November are not reflected, and Toy Story 5 (2026), still in cinemas, will move Toy Story's figure when refetched.
+- **What would make me revisit this:** A need for fresher figures (delete `data/raw` and run online), or several data warnings in a row on a new list.
 
 ## What this survives
 
-At about 500 titles Adjoa replaces the id file and runs the analysis. Only new ids are requested (about 1,000 requests, roughly two minutes at the polite pace). Every id still lands in a category, the run report lists new and removed films, and the gate still stops on impossible data. I tested a made-up zero-budget film (flagged, excluded, no crash), a made-up repeated film, and a copy with the franchise figures deleted (both stop the run with a clear message).
+At about 500 titles Adjoa replaces the id file and runs the analysis. Only new ids are requested (about 1,000 requests, roughly two minutes), every id still lands in a category, the run report lists new and removed films, and the checks still stop the run on impossible data. I tested a made-up zero-budget film (flagged, excluded, no crash), a made-up repeated film and a copy with the franchise figures deleted (both stop the run with a clear message).

@@ -105,7 +105,7 @@ def main():
     films = analysis.load_films()
     directors = pd.read_csv("data/processed/directors.csv")
     cast = pd.read_csv("data/processed/cast.csv")
-    parts = pd.read_csv(bundles.OUT)
+    parts = bundles.load_parts()
     manifest = pd.read_csv(Path("data/raw/manifest.csv"), dtype={"movie_id": str})
     ids = pd.read_csv("data/ids_classified.csv", dtype=str, keep_default_na=False)
 

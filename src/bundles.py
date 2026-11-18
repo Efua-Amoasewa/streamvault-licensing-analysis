@@ -51,6 +51,11 @@ def build_parts(films):
                         release_year=pd.to_datetime(parts["release_date"]).dt.year)
 
 
+def load_parts():
+    """The table build_parts wrote, read once from one file instead of re-reading every saved answer."""
+    return pd.read_csv(OUT)
+
+
 def whole_bundle_table(parts, min_on_list=2):
     """One row per collection with 2+ films on the list: what you'd actually be buying."""
     has_money = (parts["budget"] > 0) & (parts["revenue"] > 0)

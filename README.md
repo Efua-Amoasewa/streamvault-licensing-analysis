@@ -31,7 +31,7 @@ Separate checks:
 
 ```bash
 python src/spot_check.py             # re-fetches 12 films live and compares (needs the key)
-python src/timing.py                 # rebuilds a 500-film copy, times the full run, writes timing_report.md
+python src/timing.py                 # rebuilds 112- and 500-film copies, times cold and warm full runs, writes timing_report.md
 ```
 
 ## Using a new list

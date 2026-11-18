@@ -1,6 +1,6 @@
 # Run report
 
-Run at: 2026-11-18T16:13:34+00:00
+Run at: 2026-11-18T16:35:14+00:00
 Data as of: 2026-11-17 to 2026-11-18 (when each saved answer was fetched: films, id lookups, franchise lists and figures)
 Mode: offline, saved snapshot
 
@@ -100,11 +100,11 @@ Standalone films: Inception; Interstellar; Spirited Away; The Incredibles; Monst
 
 | step | seconds |
 |---|---|
-| classify ids | 0.01 |
-| flatten | 0.41 |
-| whole bundles | 0.09 |
-| shortlists | 0.09 |
-| talent | 0.06 |
-| uncertainty | 0.27 |
-| price ceilings | 0.05 |
-| whole run (wall clock) | 1.17 |
+| classify ids | 0.05 |
+| flatten | 0.44 |
+| whole bundles | 0.11 |
+| shortlists | 0.07 |
+| talent | 0.07 |
+| uncertainty | 0.29 |
+| price ceilings | 0.04 |
+| whole run (wall clock) | 1.31 |

@@ -99,7 +99,7 @@ def main():
     pd.set_option("display.max_columns", None)
     OUT_DIR.mkdir(exist_ok=True)
     base = load_films()
-    whole = bundles.whole_bundle_table(bundles.build_parts(base))
+    whole = bundles.whole_bundle_table(bundles.load_parts())
     result = gap_rows(base, whole, np.random.default_rng(SEED))
     print(result)
     result.to_csv(OUT_DIR / "uncertainty.csv", index=False)

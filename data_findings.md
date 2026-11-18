@@ -1,4 +1,4 @@
-# Data findings — StreamVault licensing analysis
+# Data findings — StreamVault
 
 ## Summary
 
@@ -19,6 +19,13 @@ Data as of 17–18 November 2026 (each answer is saved with the time it was fetc
 | films with usable return figures | 112 | 0 | no film has a zero or missing budget or revenue |
 
 To value franchises as they are sold (all films or none), the run also fetches each franchise's full film list and the figures for the 21 released films that are in those franchises but not on the candidate list. These extra films are used only to value bundles; they are never counted as candidates.
+
+**Proof the joins neither drop nor double a film:**
+
+- Each saved answer keeps the id we asked for. The run stops if the database returned a different film, if a film appears twice, or if the number of films flattened differs from the number fetched.
+- Cast and directors are joined to films many-to-one with a check that every person-film row finds exactly one film; the row count before and after the join must match.
+- Whole-bundle figures are joined to franchise films many-to-one (a film can sit in a franchise list only once, and each film has exactly one money record, checked before the join). The run stops if any film has two money records, if a franchise film on the list is missing from its franchise, or if a released franchise film has no money record at all.
+- A film counts as released if it came out by the day its franchise list was fetched, so the saved data gives the same answer on every rerun; films released later appear only after the list is fetched again.
 
 ## Findings, ranked by risk
 
@@ -79,7 +86,7 @@ To value franchises as they are sold (all films or none), the run also fetches e
 ### F-07: Amounts are in the money of their release year, and some are rounded estimates — Severity: Low
 
 - **What it is:** Budget and revenue are not adjusted for inflation or ticket-price changes. Four films have both figures in whole millions (for example Monsters, Inc.: $130M budget, $650M revenue, exactly 5.0x), which suggests estimates; Monsters, Inc.'s revenue likely includes a later re-release.
-- **How I detected it:** Checked how the amounts are defined; counted films whose figures are both round millions; re-fetched Monsters, Inc. live (the source agrees with our copy).
+- **How I detected it:** Checked how the amounts are defined; counted films whose figures are both round millions.
 - **Scale:** All films for inflation, most affecting pre-2000 films; 4 films for rounding.
 - **Effect on the client's number:** A return multiple partly cancels inflation (cost and income are in the same year's money), so the damage is smaller than for raw revenue. Monsters, Inc. is fifth on the standalone shortlist with a score of 0.61, against 0.50 for sixth place, so a moderate correction would not remove it.
 - **What I did about it:** Used return (revenue divided by budget) rather than raw revenue for the main comparison and said so.
@@ -96,13 +103,6 @@ To value franchises as they are sold (all films or none), the run also fetches e
 | Seven repeated lines | Looks like 7 films counted twice | Six are the same id listed again and one is The Dark Knight under another database's id; all removed before analysis, and the final film table has no repeats (checked in code). |
 | No film returns less than 1.0x | Looks like a filter removed losers | No filter was applied; it is a feature of the list (F-01). |
 | 126 rows instead of 127 | The number the usual reader reports | The reader skips a blank line; 127 is correct (F-05). |
-
-## How the tables are joined, and proof nothing is lost or doubled
-
-- Each saved answer keeps the id we asked for. The run stops if the database returned a different film, if a film appears twice, or if the number of films flattened differs from the number fetched.
-- Cast and directors are joined to films many-to-one with a check that every person-film row finds exactly one film; the row count before and after the join must match.
-- Whole-bundle figures are joined to franchise films many-to-one (a film can sit in a franchise list only once, and each film has exactly one money record, checked before the join). The run stops if any film has two money records, if a franchise film on the list is missing from its franchise, or if a released franchise film has no money record at all.
-- A film counts as released if it came out by the day its franchise list was fetched, so the saved data gives the same answer on every rerun; films released later appear only after the list is fetched again.
 
 ## Could not verify
 

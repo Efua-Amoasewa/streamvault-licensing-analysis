@@ -1,4 +1,4 @@
-# ADR-002: How franchises and standalones are compared: groups, time windows, the headline measure, and the unit of comparison
+# ADR-002: Compare the typical film and the typical whole franchise against the typical standalone, in both time windows
 
 - **Status:** Accepted
 - **Date:** 2026-11-18
@@ -6,55 +6,57 @@
 
 ## Context
 
-Kwame's question is "bundles or standalones". To answer it every film needs a group, the brief asks for two time windows, returns have a long tail, and a franchise is bought whole while the data comes per film. Each of these four choices moves the answer, so each is decided here, with what the recommendation looks like if it went the other way. All four are recomputed on every run and printed in the run report.
+Kwame's question is "bundles or standalones". The data comes per film, but a franchise is bought whole. Nine films belong to a franchise but are the only film from it on the list. Returns have a long tail: the average film returns 8.5x, the middle film 5.37x. 41 of 112 films are from before 2000, including the biggest returns (Star Wars 70.5x, Jaws 67.2x), over half the standalone films are pre-2000 against a third of the franchise films, and Finance distrusts pre-2000 figures. Films in one franchise succeed or fail together, so Harry Potter's 8 films are one bet, not 8.
 
-## Decision 1: A franchise needs two films on the list; a film alone on the list is a standalone
+## Decision
 
-Nine films (such as Jaws and The Incredibles) belong to a franchise in the database, but are the only film from it on our list. They count as standalones.
+I measure value as box-office return (worldwide revenue divided by production budget) and compare the middle film of each group, and the middle whole franchise (every released film, on the list or not; three or more films) against the middle standalone, for all years and for 2000 onward. A franchise needs two films on the list (a film alone on the list is a standalone), a window never cuts a franchise in half, and uncertainty comes from 10,000 reshuffles of the list that draw whole franchises at a time.
 
-**Alternatives rejected**
+## Alternatives considered
 
-- **Count them as franchise films**, as the database labels them. Rejected because we can only judge a bundle from the films we can see; a "bundle" of one film is not a bundle.
-- **Leave the nine out.** Keeps the groups clean but throws away nine real films and shrinks the standalone group from 25 to 16.
+### Alternative A: Per film only, every film independent
 
-**What the recommendation looks like under them:** drawing whole franchises at a time, franchise films lead in 79–93% of reshuffles under all three options. The direction never changes, only the strength.
+- **How it would work:** Compare the middle franchise film with the middle standalone film, and reshuffle single films.
+- **Why it is attractive:** Simple, uses every film, and is the figure the brief describes.
+- **Why rejected:** It counts Harry Potter as 8 pieces of evidence and ignores that bundles are sold all-or-none. Under it franchises lead in both windows, in 81% (all years) and 82% (2000 onward) of reshuffles: the strongest-looking case for bundles, and too strong. Per whole franchise the all-years answer reverses (4.4x against 5.0x) and the 2000-onward answer is a tie (4.5x each).
 
-**Cost if wrong:** the standalone group is a little more mixed, which slightly favours standalones. Two shortlisted standalones (The Incredibles, Monsters, Inc.) have a released sequel and may only be sold as a pair; the shortlist shows each title's number of other franchise films so negotiators see it.
+### Alternative B: Per whole franchise only
 
-## Decision 2: Report both windows; build the shortlist from 2000 onward; never cut a bundle in half
+- **How it would work:** One number per franchise, compared with standalone films.
+- **Why it is attractive:** Matches exactly how bundles are bought.
+- **Why rejected:** Leaves 11 franchises from 2000 onward, too few to stand alone, and drops the per-film view the brief asks for.
 
-41 of 112 films were released before 2000, including the biggest returns (Star Wars 70.5x, Jaws 67.2x). Over half the standalone films are pre-2000, against a third of the franchise films, so the all-years comparison is tilted, and Finance distrusts pre-2000 figures. Every comparison is shown for all years and for 2000 onward; the shortlist is chosen from 2000 onward because it is closer to what StreamVault would license today. A franchise is sold whole, so a bundle is in the 2000-onward ranking only if every one of its released films is from 2000 or later. (Before this rule, Mission: Impossible was ranked without its 1996 film and Indiana Jones on one film.)
+### Alternative C: The average instead of the middle film
 
-**Alternatives rejected**
+- **How it would work:** Add all returns and divide.
+- **Why it is attractive:** Familiar, and uses every value fully.
+- **Why rejected:** A handful of old hits set the answer. Across all years the average gives standalones 10.5x against 7.9x for franchises, the opposite of the middle film (5.0x against 5.5x), because of Jaws and The Good, the Bad and the Ugly. The run report prints both.
 
-- **Shortlist from all years.** Uses all the data, but the bundle shortlist becomes The Lord of the Rings, Back to the Future (1985–1990) and The Avengers, dropping Harry Potter for a 35-year-old trilogy from a different market; Toy Story and The Godfather follow.
-- **Cut bundles at 2000 like single films.** One rule for everything, but it values something that cannot be bought: a studio will not sell Mission: Impossible without its first film.
+### Alternative D: Count the nine lone films as franchise, or leave them out
 
-**The answer changes with the window, and the memo says so first.** Per film, franchises lead in both (5.5x vs 5.0x all years; 5.1x vs 4.5x from 2000). Per whole bundle, the all-years answer reverses (4.4x vs 5.0x), and from 2000 onward the two tie (4.5x each).
+- **How it would work:** Follow the database's franchise label, or drop the nine from both groups.
+- **Why it is attractive:** Matches the database, or keeps the groups clean.
+- **Why rejected:** A "bundle" of one film is not a bundle, and dropping them shrinks the standalone group from 25 to 16. Under all three options franchise films lead in 79–93% of reshuffles, so the direction never changes, only the strength.
 
-**Cost if wrong:** a great older film (Back to the Future, second-ranked bundle across all years) is not on the shortlist.
+### Alternative E: Cut franchises at 2000 like single films, or shortlist from all years
 
-## Decision 3: The median film is the headline, with the average shown beside it
+- **How it would work:** Keep only a franchise's post-2000 films; or rank every title regardless of year.
+- **Why it is attractive:** One rule for everything; or uses all the data.
+- **Why rejected:** A studio will not sell Mission: Impossible without its 1996 film, so a cut franchise cannot be bought. Shortlisting from all years swaps Harry Potter for Back to the Future (1985–1990), a 35-year-old trilogy from a different market.
 
-Return (revenue divided by budget) has a long tail: the average film returns 8.5x, the middle film 5.37x.
+### Alternative F: Raw revenue as the measure of value
 
-**Alternative rejected: the average.** Familiar, but a handful of old hits set the answer. Across all years the average gives standalones 10.5x against 7.9x for franchises, the opposite of the median, because of Jaws and The Good, the Bad and the Ugly.
+- **How it would work:** Rank by worldwide box office in dollars.
+- **Why it is attractive:** Big numbers, easy to say.
+- **Why rejected:** Favours the most expensive films, and old and new money mix badly; a return partly cancels inflation because cost and income are in the same year's money (F-07).
 
-**Cost if wrong:** if blockbusters are what pay for a library, the median understates high-variance films. The run report prints both.
+## Consequences
 
-## Decision 4: Compare per film and per whole bundle, and reshuffle whole franchises
-
-Two comparisons in both windows: the typical **film** in each group, and the typical **whole bundle** (every released film in the franchise, on the list or not) against the typical standalone film. The per-bundle comparison uses the same bundles the shortlist ranks: three or more released films (ADR-005). To measure how sure we are, the list is reshuffled 10,000 times, drawing whole franchises with replacement so Harry Potter's 8 films move together.
-
-**Alternatives rejected**
-
-- **Per film only, every film independent** (the original approach). Simple and the figure the brief describes, but it counts the 8 Harry Potter films as 8 pieces of evidence and ignores that bundles are sold all-or-none. Under it, franchises lead in 81% (all years) and 82% (2000 onward) of reshuffles: the strongest-looking case for bundles, and too strong.
-- **Per whole bundle only.** Matches how bundles are bought, but leaves 11 bundles from 2000 onward, too few to stand alone, and drops the per-film view the brief asks for.
-
-**What this buys:** an honest strength of evidence. Per film with franchises drawn whole, franchises lead in 79% (all years) and 80% (2000 onward) of reshuffles. Per whole bundle, they lead in only 36% across all years and 65% from 2000 onward. Every range includes zero. "Bundles are the safer class of purchase" is not supported; "these specific bundles are strong" is.
-
-**Cost if wrong:** if the per-film view is the right one, the recommendation is slightly too cautious; the shortlist does not change.
+- **What this buys:** An honest strength of evidence, said loudly in the memo. Per film, franchises lead in both windows (5.5x against 5.0x all years; 5.1x against 4.5x from 2000), in 79% and 80% of reshuffles. Per whole franchise, they trail across all years (4.4x against 5.0x; ahead in 36% of reshuffles) and tie from 2000 onward (4.5x each; ahead in 65%). Every range includes zero, so "bundles are the safer class of purchase" is not supported; "these specific bundles are strong" is.
+- **What this costs:** A less clean headline, and a shortlist that leaves out older films. Two shortlisted standalones (The Incredibles, Monsters, Inc.) have a released sequel; the shortlist shows each title's number of other franchise films so negotiators see it.
+- **What it costs the client if I am wrong:** If the per-film view is the right one, the recommendation is slightly too cautious; the shortlist does not change. If blockbusters are what pay for a library, the middle film understates high-variance titles. A great older franchise (Back to the Future) is not on the shortlist.
+- **What would make me revisit this:** Licence prices or streaming viewing figures, which would replace box-office return as the measure; or evidence that classic films perform as well on a streaming service.
 
 ## What this survives
 
-At about 500 titles Adjoa reruns unchanged. The grouping reads franchise counts from the data each time, so films that are singles today become bundles when more of their franchise is listed. The cut-off year is one setting (`CUTOFF_YEAR` in `src/analysis.py`) that every step reads. The median becomes more stable and the per-bundle comparison gains enough bundles to stand on its own; all 14 comparisons are timed in `timing_report.md` (ADR-004).
+At about 500 titles Adjoa reruns unchanged. The grouping reads franchise counts from the data each time, so today's lone films become franchises when more of their series is listed. The cut-off year is one setting (`CUTOFF_YEAR` in `src/analysis.py`) that every step reads. More franchises let the per-franchise comparison stand on its own, and all 14 comparisons are recomputed and printed in the run report on every run.
